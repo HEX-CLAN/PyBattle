@@ -1,18 +1,19 @@
 import pyglet
-from pyglet.text import Label 
+import scene
+
 
 window = pyglet.window.Window()
-label = pyglet.text.Label('Hello, world', font_name='Times New Roman',
-                          font_size=36, x=window.width//2, y=window.height//2,
-                          anchor_x='center', anchor_y='center')
-image = pyglet.resource.image('hello.png')
-
-
+window.scene_o = scene.MenuScene()
 
 @window.event
 def on_draw():
     window.clear()
-    label.draw()
-    image.blit(0, 0)
+    window.scene_o.on_draw()
+
+@window.event
+def on_mouse_press(x, y, button, modifiers):
+    window.scene_o.on_mouse_press()
+    if not isinstance(window.scene_o, window.scene_o.goto):
+        window.scene_o = window.scene_o.goto()
 
 pyglet.app.run()
