@@ -3,6 +3,9 @@
 Harmonogram zrobię we wtorek po 17
 jak juz bedzie wiadomo ile jestesmy w stanie zrobic 
 
+zrobione:
+* generowanie grida hex'ów
+
 do zrobienia na start:
 * zainstalować arcade i odpalić jakiegoś exampla
 * widok z jakąś kratką
@@ -11,8 +14,10 @@ do zrobienia na start:
 
 pozniej:
 * przesuwanie mapy
-* generowanie grida hex'ów / kwadratów / trojkatow
+* generowanie grida kwadratów / trojkatow
+* zrobienie kontenera na dane o polach
 
 jeszcze pozniej:
 * ogarnac generowanie wody, skał itp (mozna przepisac z oryginalnego xbattle)
 * wkladac powoli funkcjonalnosci klikania w pole
+* zoptymalizować rysowanie linii (teraz każda wewnętrzna linia jest rysowana 2 razy)
