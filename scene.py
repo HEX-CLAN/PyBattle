@@ -1,11 +1,12 @@
 import pyglet
 import utils
 from grid_hexagon import HexagonalGrid
+from pyglet import font
 import settings
 
 
 class GameScene:
-    def __init__(self,width,height):
+    def __init__(self, width, height):
         self.goto = GameScene
         self.grid = HexagonalGrid(width, height, 30, 20)
         self.batch = pyglet.graphics.Batch()
@@ -48,12 +49,19 @@ class GameScene:
 
 
 class MenuScene:
-    def __init__(self,width,height):
+    def __init__(self, width, height):
         self.goto = MenuScene
-        self.label = pyglet.text.Label('PyBattle', font_name='Times New Roman',
-                          font_size=36, x=200, y=200,
-                          anchor_x='center', anchor_y='center', color=(1,0,0,255))
-        pyglet.gl.glClearColor(176/255, 220/255, 112/255, 1)
+        pyglet.font.add_file("hexagon_cup.ttf")
+        pyglet.font.load('HEXAGON cup font')
+        self.label = pyglet.text.Label(
+            'PyBattle',
+            font_name='HEXAGON cup font',
+            font_size=50,
+            x=width/2,
+            y=height-100,
+            anchor_x='center',
+            color=(255, 255, 255, 255))
+        pyglet.gl.glClearColor(0, 0, 0, 0)
 
     def on_mouse_press(self):
         self.goto = GameScene
