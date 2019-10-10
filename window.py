@@ -12,8 +12,6 @@ window.scene_o = scene.MenuScene(HEX_RADIUS)
 def on_draw():
     window.clear()
     window.scene_o.on_draw()
-    #window.width = WINDOW_WIDTH
-    #window.height = WINDOW_HEIGHT
 
 
 @window.event
