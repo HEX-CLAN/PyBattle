@@ -1,4 +1,6 @@
 import pyglet
+from pyglet.gl import *
+from pyglet.window import mouse
 import utils
 from grid_hexagon import HexagonalGrid
 from pyglet import font
@@ -53,7 +55,7 @@ class MenuScene:
         self.goto = MenuScene
         pyglet.font.add_file("hexagon_cup.ttf")
         pyglet.font.load('HEXAGON cup font')
-        self.label = pyglet.text.Label(
+        self.header = pyglet.text.Label(
             'PyBattle',
             font_name='HEXAGON cup font',
             font_size=50,
@@ -61,10 +63,40 @@ class MenuScene:
             y=height-100,
             anchor_x='center',
             color=(255, 255, 255, 255))
+        self.start_button = pyglet.text.Label(
+            '⬡ START',
+            font_name='Arial',
+            font_size=24,
+            x=width/2,
+            y=height-400,
+            anchor_x='center',
+            color=(255, 255, 255, 255)
+        )
+        self.settings_button = pyglet.text.Label(
+            '⬡ SETTINGS',
+            font_name='Arial',
+            font_size=24,
+            x=width/2,
+            y=height-450,
+            anchor_x='center',
+            color=(255, 255, 255, 255)
+        )
+        self.exit_button = pyglet.text.Label(
+            '⬡ EXIT',
+            font_name='Arial',
+            font_size=24,
+            x=width/2,
+            y=height-500,
+            anchor_x='center',
+            color=(255, 255, 255, 255)
+        )
         pyglet.gl.glClearColor(0, 0, 0, 0)
 
     def on_mouse_press(self):
         self.goto = GameScene
 
     def on_draw(self):
-        self.label.draw()
+        self.header.draw()
+        self.start_button.draw()
+        self.settings_button.draw()
+        self.exit_button.draw()
