@@ -1,8 +1,8 @@
 import pyglet
 import scene
 
-WINDOW_WIDTH = 1366
-WINDOW_HEIGHT = 768
+WINDOW_WIDTH = 1100
+WINDOW_HEIGHT = 720
 
 window = pyglet.window.Window(WINDOW_WIDTH, WINDOW_HEIGHT, caption="1024x640", resizable=True)
 # vsync=False to unlock more fps

@@ -2,12 +2,14 @@ import pyglet
 import utils
 from grid_hexagon import HexagonalGrid
 import settings
+import time
 
 
 class GameScene:
     def __init__(self,width,height):
         self.goto = GameScene
         self.grid = HexagonalGrid(width, height, 30, 20)
+        self.game_time = time.time()
         self.batch = pyglet.graphics.Batch()
         pyglet.gl.glClearColor(0.5, 0.5, 0.5, 1)
 
@@ -45,7 +47,9 @@ class GameScene:
 
     def on_draw(self):
         self.batch.draw()
-
+        time_label = "{:2.2f}".format(time.time() - self.game_time)
+        time_label = pyglet.text.Label(time_label, font_size=20, x=1000, y=10, color=(255,255,255,255))
+        time_label.draw()
 
 class MenuScene:
     def __init__(self,width,height):
