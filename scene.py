@@ -11,10 +11,6 @@ class GameScene:
         self.batch = pyglet.graphics.Batch()
         pyglet.gl.glClearColor(0.5, 0.5, 0.5, 1)
 
-    def on_mouse_press(self):
-        self.goto = MenuScene
-
-    def on_draw(self):
         points = []
         colors = []
         vertices_count = (self.grid.mapping_grid_height + 1) * (self.grid.mapping_grid_width + 1)
@@ -44,6 +40,10 @@ class GameScene:
                 self.batch.add(12, pyglet.gl.GL_LINES, None, ('v2i', self.grid.get_hex_lines(x, y)),
                                ('c3B', [0, 255, 0] * 12))
 
+    def on_mouse_press(self):
+        self.goto = MenuScene
+
+    def on_draw(self):
         self.batch.draw()
 
 
