@@ -27,19 +27,19 @@ python window.py
 * Choose efficient graphics library
 * Prepare general structure of game (menu and game scenes)
 * Implement basic map drawing
-[issue #1](https://github.com/HEX-CLAN/PyBattle/issues/1),
-[issue #5](https://github.com/HEX-CLAN/PyBattle/issues/5)
+  - [Issue #1 Correct hex points calculation in utils.py](https://github.com/HEX-CLAN/PyBattle/issues/1)
+  - [Issue #5 Optimise lines drawing in grid](https://github.com/HEX-CLAN/PyBattle/issues/5)
 * Create basic menu with some basic settings: 
-[issue #2](https://github.com/HEX-CLAN/PyBattle/issues/2)
+  - [Issue #2 Add menu to the game](https://github.com/HEX-CLAN/PyBattle/issues/2)
 * Prepare some debugging notes
-[issue #4](https://github.com/HEX-CLAN/PyBattle/issues/4)
+  - [Issue #4 Time management](https://github.com/HEX-CLAN/PyBattle/issues/4)
 
 ##### November
 * Add random map generator
-[issue #3](https://github.com/HEX-CLAN/PyBattle/issues/3)
+  - [Issue #3 Add procedural map generator](https://github.com/HEX-CLAN/PyBattle/issues/3)
 * Add basic behavior to fields on map (transfering power)
-[issue #6](https://github.com/HEX-CLAN/PyBattle/issues/6),
-[issue #7](https://github.com/HEX-CLAN/PyBattle/issues/7)
+  - [Issue #6 Mouse click spot recognition](https://github.com/HEX-CLAN/PyBattle/issues/6)
+  - [Issue #7 Add in-cell aiming](https://github.com/HEX-CLAN/PyBattle/issues/7)
 * Add base building
 
 ##### December
