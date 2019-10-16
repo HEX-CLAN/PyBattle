@@ -55,24 +55,22 @@ class MenuScene:
         self.goto = gamescene.GameScene
 
     def on_draw(self):
+        cyan_color = (35, 255, 204, 255,
+                      35, 255, 204, 255,
+                      35, 255, 204, 255,
+                      35, 255, 204, 255)
         pyglet.graphics.draw(4, pyglet.gl.GL_LINE_LOOP,
-                             ('v2f', (521, 229,
-                                      521, 428,
-                                      846, 428,
-                                      846, 229)),
-                             ('c4B', (35, 255, 204, 255,
-                                      35, 255, 204, 255,
-                                      35, 255, 204, 255,
-                                      35, 255, 204, 255)))
+                             ('v2f', (383, 181,
+                                      383, 381,
+                                      717, 381,
+                                      717, 181)),
+                             ('c4B', cyan_color))
         pyglet.graphics.draw(4, pyglet.gl.GL_LINE_LOOP,
-                             ('v2f', (516, 224,
-                                      516, 433,
-                                      851, 433,
-                                      851, 224)),
-                             ('c4B', (35, 255, 204, 255,
-                                      35, 255, 204, 255,
-                                      35, 255, 204, 255,
-                                      35, 255, 204, 255)))
+                             ('v2f', (378, 176,
+                                      378, 386,
+                                      722, 386,
+                                      722, 176)),
+                             ('c4B', cyan_color))
         self.header.draw()
         self.start_button.draw()
         self.settings_button.draw()
