@@ -24,7 +24,7 @@ class MenuScene:
             anchor_x='center',
             color=(35, 255, 204, 255))
         self.start_button = pyglet.text.Label(
-            '⬡ START',
+            'START',
             font_name='Caviar Dreams',
             font_size=24,
             x=settings.width/2,
@@ -33,7 +33,7 @@ class MenuScene:
             color=(35, 255, 204, 255)
         )
         self.settings_button = pyglet.text.Label(
-            '⬡ SETTINGS',
+            'SETTINGS',
             font_name='Caviar Dreams',
             font_size=24,
             x=settings.width/2,
@@ -42,7 +42,7 @@ class MenuScene:
             color=(35, 255, 204, 255)
         )
         self.exit_button = pyglet.text.Label(
-            '⬡ EXIT',
+            'EXIT',
             font_name='Caviar Dreams',
             font_size=24,
             x=settings.width/2,
