@@ -2,19 +2,18 @@ import pyglet
 import utils
 from grid_hexagon import HexagonalGrid
 import settings
+import time
 
 
 class GameScene:
-    def __init__(self,width,height):
+    def __init__(self):
         self.goto = GameScene
-        self.grid = HexagonalGrid(width, height, 30, 20)
+        self.grid = HexagonalGrid(settings.width, settings.height, 30, 20)
+        if settings.duration:
+            self.game_time = time.time()
         self.batch = pyglet.graphics.Batch()
         pyglet.gl.glClearColor(0.5, 0.5, 0.5, 1)
 
-    def on_mouse_press(self):
-        self.goto = MenuScene
-
-    def on_draw(self):
         points = []
         colors = []
         vertices_count = (self.grid.mapping_grid_height + 1) * (self.grid.mapping_grid_width + 1)
@@ -44,11 +43,18 @@ class GameScene:
                 self.batch.add(12, pyglet.gl.GL_LINES, None, ('v2i', self.grid.get_hex_lines(x, y)),
                                ('c3B', [0, 255, 0] * 12))
 
-        self.batch.draw()
+    def on_mouse_press(self):
+        self.goto = MenuScene
 
+    def on_draw(self):
+        self.batch.draw()
+        if settings.duration:
+            time_label = "{:2.2f}".format(time.time() - self.game_time)
+            time_label = pyglet.text.Label(time_label, font_size=20, x=1000, y=10, color=settings.white)
+            time_label.draw()
 
 class MenuScene:
-    def __init__(self,width,height):
+    def __init__(self):
         self.goto = MenuScene
         self.label = pyglet.text.Label('PyBattle', font_name='Times New Roman',
                           font_size=36, x=200, y=200,

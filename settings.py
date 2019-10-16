@@ -1,2 +1,8 @@
+width = 1100
+height = 720
 
-WHITE = [255]*4
+white = (255,255,255,255)
+black = (0,0,0,255)
+
+fps = True
+duration = True
