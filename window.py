@@ -1,11 +1,12 @@
 import pyglet
-import scene
+import menuscene
+import gamescene
 import settings
 
 
 window = pyglet.window.Window(settings.width, settings.height, resizable=True)
 # vsync=False to unlock more fps
-window.scene_o = scene.MenuScene()
+window.scene_o = menuscene.MenuScene()
 if settings.fps:
     window.fps_display = pyglet.window.FPSDisplay(window)
     window.fps_display.label.font_size = 20
