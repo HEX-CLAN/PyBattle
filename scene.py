@@ -1,11 +1,14 @@
 import pyglet
+from pyglet.gl import *
+from pyglet.window import mouse
 import utils
 from grid_hexagon import HexagonalGrid
+from pyglet import font
 import settings
 
 
 class GameScene:
-    def __init__(self,width,height):
+    def __init__(self, width, height):
         self.goto = GameScene
         self.grid = HexagonalGrid(width, height, 30, 20)
         self.batch = pyglet.graphics.Batch()
@@ -48,15 +51,72 @@ class GameScene:
 
 
 class MenuScene:
-    def __init__(self,width,height):
+    def __init__(self, width, height):
         self.goto = MenuScene
-        self.label = pyglet.text.Label('PyBattle', font_name='Times New Roman',
-                          font_size=36, x=200, y=200,
-                          anchor_x='center', anchor_y='center', color=(1,0,0,255))
-        pyglet.gl.glClearColor(176/255, 220/255, 112/255, 1)
+        pyglet.gl.glClearColor(0.1, 0.1, 0.1, 1)
+        pyglet.font.add_file("hexagon_cup.ttf")
+        pyglet.font.load('HEXAGON cup font')
+        pyglet.font.add_file("CaviarDreams.ttf")
+        pyglet.font.load('Caviar Dreams')
+        self.header = pyglet.text.Label(
+            'PyBattle',
+            font_name='HEXAGON cup font',
+            font_size=70,
+            x=width/2,
+            y=height-130,
+            anchor_x='center',
+            color=(35, 255, 204, 255))
+        self.start_button = pyglet.text.Label(
+            '⬡ START',
+            font_name='Caviar Dreams',
+            font_size=24,
+            x=width/2,
+            y=height-400,
+            anchor_x='center',
+            color=(35, 255, 204, 255)
+        )
+        self.settings_button = pyglet.text.Label(
+            '⬡ SETTINGS',
+            font_name='Caviar Dreams',
+            font_size=24,
+            x=width/2,
+            y=height-450,
+            anchor_x='center',
+            color=(35, 255, 204, 255)
+        )
+        self.exit_button = pyglet.text.Label(
+            '⬡ EXIT',
+            font_name='Caviar Dreams',
+            font_size=24,
+            x=width/2,
+            y=height-500,
+            anchor_x='center',
+            color=(35, 255, 204, 255)
+        )
 
     def on_mouse_press(self):
         self.goto = GameScene
 
     def on_draw(self):
-        self.label.draw()
+        pyglet.graphics.draw(4, pyglet.gl.GL_LINE_LOOP,
+                             ('v2f', (521, 229,
+                                      521, 428,
+                                      846, 428,
+                                      846, 229)),
+                             ('c4B', (35, 255, 204, 255,
+                                      35, 255, 204, 255,
+                                      35, 255, 204, 255,
+                                      35, 255, 204, 255)))
+        pyglet.graphics.draw(4, pyglet.gl.GL_LINE_LOOP,
+                             ('v2f', (516, 224,
+                                      516, 433,
+                                      851, 433,
+                                      851, 224)),
+                             ('c4B', (35, 255, 204, 255,
+                                      35, 255, 204, 255,
+                                      35, 255, 204, 255,
+                                      35, 255, 204, 255)))
+        self.header.draw()
+        self.start_button.draw()
+        self.settings_button.draw()
+        self.exit_button.draw()
