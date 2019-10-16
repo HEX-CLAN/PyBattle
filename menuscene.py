@@ -1,9 +1,6 @@
 import pyglet
 from pyglet.gl import *
-from pyglet.window import mouse
-from pyglet import font
 import settings
-import time
 import gamescene
 
 
@@ -30,7 +27,7 @@ class MenuScene:
             x=settings.width/2,
             y=settings.height-400,
             anchor_x='center',
-            color=(35, 255, 204, 255)
+            color=settings.cyan
         )
         self.settings_button = pyglet.text.Label(
             'SETTINGS',
@@ -39,7 +36,7 @@ class MenuScene:
             x=settings.width/2,
             y=settings.height-450,
             anchor_x='center',
-            color=(35, 255, 204, 255)
+            color=settings.cyan
         )
         self.exit_button = pyglet.text.Label(
             'EXIT',
@@ -48,29 +45,25 @@ class MenuScene:
             x=settings.width/2,
             y=settings.height-500,
             anchor_x='center',
-            color=(35, 255, 204, 255)
+            color=settings.cyan
         )
 
     def on_mouse_press(self):
         self.goto = gamescene.GameScene
 
     def on_draw(self):
-        cyan_color = (35, 255, 204, 255,
-                      35, 255, 204, 255,
-                      35, 255, 204, 255,
-                      35, 255, 204, 255)
         pyglet.graphics.draw(4, pyglet.gl.GL_LINE_LOOP,
                              ('v2f', (383, 181,
                                       383, 381,
                                       717, 381,
                                       717, 181)),
-                             ('c4B', cyan_color))
+                             ('c4B', settings.cyan_frame))
         pyglet.graphics.draw(4, pyglet.gl.GL_LINE_LOOP,
                              ('v2f', (378, 176,
                                       378, 386,
                                       722, 386,
                                       722, 176)),
-                             ('c4B', cyan_color))
+                             ('c4B', settings.cyan_frame))
         self.header.draw()
         self.start_button.draw()
         self.settings_button.draw()
