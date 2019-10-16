@@ -33,10 +33,10 @@ python window.py
   - [Issue #2 Add menu to the game](https://github.com/HEX-CLAN/PyBattle/issues/2)
 * Prepare some debugging notes
   - [Issue #4 Time management](https://github.com/HEX-CLAN/PyBattle/issues/4)
-
-##### November
 * Add random map generator
   - [Issue #3 Add procedural map generator](https://github.com/HEX-CLAN/PyBattle/issues/3)
+
+##### November
 * Add basic behavior to fields on map (transfering power)
   - [Issue #6 Mouse click spot recognition](https://github.com/HEX-CLAN/PyBattle/issues/6)
   - [Issue #7 Add in-cell aiming](https://github.com/HEX-CLAN/PyBattle/issues/7)
