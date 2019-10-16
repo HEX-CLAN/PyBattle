@@ -1,9 +1,6 @@
 import pyglet
 from pyglet.gl import *
-from pyglet.window import mouse
-from pyglet import font
 import settings
-import time
 import gamescene
 from button import Button
 
@@ -35,22 +32,18 @@ class MenuScene:
         self.goto = gamescene.GameScene
 
     def on_draw(self):
-        cyan_color = (35, 255, 204, 255,
-                      35, 255, 204, 255,
-                      35, 255, 204, 255,
-                      35, 255, 204, 255)
         pyglet.graphics.draw(4, pyglet.gl.GL_LINE_LOOP,
                              ('v2f', (383, 181,
                                       383, 381,
                                       717, 381,
                                       717, 181)),
-                             ('c4B', cyan_color))
+                             ('c4B', settings.cyan_frame))
         pyglet.graphics.draw(4, pyglet.gl.GL_LINE_LOOP,
                              ('v2f', (378, 176,
                                       378, 386,
                                       722, 386,
                                       722, 176)),
-                             ('c4B', cyan_color))
+                             ('c4B', settings.cyan_frame))
         self.header.draw()
         self.start_button.draw()
         self.settings_button.draw()
