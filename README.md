@@ -1,18 +1,54 @@
-# PyBattle
+# PyBattle (xBattle resurrection)
 
-Harmonogram zrobię we wtorek po 17
-jak juz bedzie wiadomo ile jestesmy w stanie zrobic 
+inspired by https://inf.ug.edu.pl/~piotao/old/xbattle/ (in Polish)
 
-do zrobienia na start:
-* zainstalować arcade i odpalić jakiegoś exampla
-* widok z jakąś kratką
-* widok z tytułem gry (ala menu)
-* rozbicie scen na gre i menu (w menu narazie wystarczy klik lub nacisniecie klawisza aby przejsc dalej)
+## Requirements and launching instructions
 
-pozniej:
-* przesuwanie mapy
-* generowanie grida hex'ów / kwadratów / trojkatow
+##### Python:
+we recommend 3.7.4 or 3.6.9, because we are using them.
 
-jeszcze pozniej:
-* ogarnac generowanie wody, skał itp (mozna przepisac z oryginalnego xbattle)
-* wkladac powoli funkcjonalnosci klikania w pole
+##### Python packages:
+* Pyglet
+* numpy
+
+##### Supported OS:
+* Windows
+* Linux
+* MacOS
+
+##### Run the game:
+```
+python window.py
+```
+
+## Work schedule
+
+##### October
+* Choose efficient graphics library
+* Prepare general structure of game (menu and game scenes)
+* Implement basic map drawing
+  - [Issue #1 Correct hex points calculation in utils.py](https://github.com/HEX-CLAN/PyBattle/issues/1)
+  - [Issue #5 Optimise lines drawing in grid](https://github.com/HEX-CLAN/PyBattle/issues/5)
+* Create basic menu with some basic settings: 
+  - [Issue #2 Add menu to the game](https://github.com/HEX-CLAN/PyBattle/issues/2)
+* Prepare some debugging notes
+  - [Issue #4 Time management](https://github.com/HEX-CLAN/PyBattle/issues/4)
+
+##### November
+* Add random map generator
+  - [Issue #3 Add procedural map generator](https://github.com/HEX-CLAN/PyBattle/issues/3)
+* Add basic behavior to fields on map (transfering power)
+  - [Issue #6 Mouse click spot recognition](https://github.com/HEX-CLAN/PyBattle/issues/6)
+  - [Issue #7 Add in-cell aiming](https://github.com/HEX-CLAN/PyBattle/issues/7)
+* Add base building
+
+##### December
+* Add shooting ability
+* Add filling water fields
+* Add AI (simple, maybe random behaviors)
+* Add multiplayer ???
+
+##### January
+* Improve AI 
+* Release the working demo
+

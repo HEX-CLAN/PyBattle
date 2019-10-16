@@ -5,12 +5,15 @@ import utils
 from grid_hexagon import HexagonalGrid
 from pyglet import font
 import settings
+import time
 
 
 class GameScene:
-    def __init__(self, width, height):
+    def __init__(self):
         self.goto = GameScene
-        self.grid = HexagonalGrid(width, height, 30, 20)
+        self.grid = HexagonalGrid(settings.width, settings.height, 30, 20)
+        if settings.duration:
+            self.game_time = time.time()
         self.batch = pyglet.graphics.Batch()
         pyglet.gl.glClearColor(0.5, 0.5, 0.5, 1)
 
@@ -48,10 +51,13 @@ class GameScene:
 
     def on_draw(self):
         self.batch.draw()
-
+        if settings.duration:
+            time_label = "{:2.2f}".format(time.time() - self.game_time)
+            time_label = pyglet.text.Label(time_label, font_size=20, x=1000, y=10, color=settings.white)
+            time_label.draw()
 
 class MenuScene:
-    def __init__(self, width, height):
+    def __init__(self):
         self.goto = MenuScene
         pyglet.gl.glClearColor(0.1, 0.1, 0.1, 1)
         pyglet.font.add_file("hexagon_cup.ttf")
