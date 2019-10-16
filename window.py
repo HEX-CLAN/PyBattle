@@ -29,6 +29,12 @@ def on_mouse_press(x, y, button, modifiers):
 @window.event
 def on_resize(width, height):
     window.set_caption("{}x{}".format(width, height))
+    print("{}x{}".format(width, height))
+
+@window.event
+def on_mouse_motion(x, y, dx, dy):
+    window.scene_o.on_mouse_motion(x, y)
+
 
 pyglet.clock.schedule_interval(on_draw, 0.0166)
 # 0.001 to unlock more fpx

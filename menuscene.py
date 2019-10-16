@@ -5,6 +5,7 @@ from pyglet import font
 import settings
 import time
 import gamescene
+from button import Button
 
 
 class MenuScene:
@@ -23,33 +24,12 @@ class MenuScene:
             y=settings.height-130,
             anchor_x='center',
             color=(35, 255, 204, 255))
-        self.start_button = pyglet.text.Label(
-            'START',
-            font_name='Caviar Dreams',
-            font_size=24,
-            x=settings.width/2,
-            y=settings.height-400,
-            anchor_x='center',
-            color=(35, 255, 204, 255)
-        )
-        self.settings_button = pyglet.text.Label(
-            'SETTINGS',
-            font_name='Caviar Dreams',
-            font_size=24,
-            x=settings.width/2,
-            y=settings.height-450,
-            anchor_x='center',
-            color=(35, 255, 204, 255)
-        )
-        self.exit_button = pyglet.text.Label(
-            'EXIT',
-            font_name='Caviar Dreams',
-            font_size=24,
-            x=settings.width/2,
-            y=settings.height-500,
-            anchor_x='center',
-            color=(35, 255, 204, 255)
-        )
+
+        center_x = settings.width//2
+        center_y = settings.height//2
+        self.start_button = Button('START', center_x, center_y + 50, 200, 40)
+        self.settings_button = Button('SETTINGS', center_x, center_y, 200, 40)
+        self.exit_button = Button('EXIT', center_x, center_y - 50, 200, 40)
 
     def on_mouse_press(self):
         self.goto = gamescene.GameScene
@@ -75,3 +55,8 @@ class MenuScene:
         self.start_button.draw()
         self.settings_button.draw()
         self.exit_button.draw()
+
+    def on_mouse_motion(self, x, y):
+        self.start_button.on_hover(x, y)
+        self.settings_button.on_hover(x, y)
+        self.exit_button.on_hover(x, y)

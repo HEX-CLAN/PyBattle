@@ -52,3 +52,6 @@ class GameScene:
             time_label = "{:2.2f}".format(time.time() - self.game_time)
             time_label = pyglet.text.Label(time_label, font_size=20, x=1000, y=10, color=settings.white)
             time_label.draw()
+
+    def on_mouse_motion(self, x, y):
+        pass
