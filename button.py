@@ -28,13 +28,16 @@ class Button:
                 self.x - self.w//2, self.y - self.h//2,
                 self.x + self.w//2, self.y - self.h//2, 
                 self.x + self.w//2, self.y + self.h//2,
-                self.x - self.w//2, self.y + self.h//2
-            )),('c4B', [color]*16 )
+                self.x - self.w//2, self.y + self.h//2)),
+            ('c4B', settings.button_bg)
         )
         self.label.draw()
 
     def on_hover(self, mouse_x, mouse_y):
         if (self.x-self.w//2) < mouse_x < (self.x+self.w//2) and (self.y-self.h//2) < mouse_y < (self.y+self.h//2):
             self.hover = True
+            self.label.color = settings.violet
         else:
             self.hover = False
+            self.label.color = settings.cyan
+            

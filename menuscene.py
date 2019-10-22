@@ -24,9 +24,9 @@ class MenuScene:
 
         center_x = settings.width//2
         center_y = settings.height//2
-        self.start_button = Button('START', center_x, center_y + 50, 200, 40)
-        self.settings_button = Button('SETTINGS', center_x, center_y, 200, 40)
-        self.exit_button = Button('EXIT', center_x, center_y - 50, 200, 40)
+        self.start_button = Button('START', center_x, center_y-28, 200, 40)
+        self.settings_button = Button('SETTINGS', center_x, center_y-78, 200, 40)
+        self.exit_button = Button('EXIT', center_x, center_y-128, 200, 40)
 
     def on_mouse_press(self):
         self.goto = gamescene.GameScene
