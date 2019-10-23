@@ -25,3 +25,6 @@ class GameScene:
 
     def on_mouse_motion(self, x, y):
         pass
+
+    def on_mouse_release(self):
+        pass
