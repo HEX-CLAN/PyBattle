@@ -36,7 +36,7 @@ class Button:
     def on_mouse_motion(self, mouse_x, mouse_y):
         if (self.x-self.w//2) < mouse_x < (self.x+self.w//2) and (self.y-self.h//2) < mouse_y < (self.y+self.h//2):
             self.hover = True
-            self.label.color = settings.violet
+            self.label.color = settings.yellow
         else:
             self.hover = False
             self.label.color = settings.cyan

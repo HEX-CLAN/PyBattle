@@ -13,14 +13,16 @@ class MenuScene:
         pyglet.font.load('HEXAGON cup font')
         pyglet.font.add_file("CaviarDreams.ttf")
         pyglet.font.load('Caviar Dreams')
+        pyglet.font.add_file('hexgon.ttf')
+        pyglet.font.load('HEX:gon')
         self.header = pyglet.text.Label(
             'PyBattle',
             font_name='HEXAGON cup font',
-            font_size=70,
+            font_size=65,
             x=settings.width/2,
             y=settings.height-130,
             anchor_x='center',
-            color=(35, 255, 204, 255))
+            color=settings.cyan)
 
         center_x = settings.width//2
         center_y = settings.height//2
@@ -28,6 +30,16 @@ class MenuScene:
         self.buttons.append(Button('START', center_x, center_y-28, 200, 40))
         self.buttons.append(Button('SETTINGS', center_x, center_y-78, 200, 40))
         self.buttons.append(Button('EXIT', center_x, center_y-128, 200, 40))
+
+        self.hexagons_upper = pyglet.text.Label(
+            '_                    _',
+            font_name='HEX:gon',
+            font_size=65,
+            x=settings.width / 2,
+            y=settings.height - 140,
+            anchor_x='center',
+            color=settings.cyan
+        )
 
     def on_mouse_press(self):
         for b in self.buttons:
@@ -57,6 +69,7 @@ class MenuScene:
                                       722, 386,
                                       722, 176)),
                              ('c4B', settings.cyan_frame))
+        self.hexagons_upper.draw()
         self.header.draw()
         for b in self.buttons:
             b.draw()
