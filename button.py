@@ -18,9 +18,9 @@ class Button:
             color=settings.button_color
         )
         self.hover = False
+        self.pressed = False
         
     def draw(self):
-        color = 100 if self.hover else 70
         pyglet.graphics.draw(
             4,
             pyglet.gl.GL_POLYGON,
@@ -33,11 +33,22 @@ class Button:
         )
         self.label.draw()
 
-    def on_hover(self, mouse_x, mouse_y):
+    def on_mouse_motion(self, mouse_x, mouse_y):
         if (self.x-self.w//2) < mouse_x < (self.x+self.w//2) and (self.y-self.h//2) < mouse_y < (self.y+self.h//2):
             self.hover = True
             self.label.color = settings.violet
         else:
             self.hover = False
             self.label.color = settings.cyan
-            
+
+    def on_mouse_press(self):
+        self.pressed = self.hover
+
+    def on_mouse_release(self):
+        if self.pressed and self.hover:
+            self.pressed = False
+            return True
+        else:
+            self.pressed = False
+            return False
+

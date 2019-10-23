@@ -24,12 +24,25 @@ class MenuScene:
 
         center_x = settings.width//2
         center_y = settings.height//2
-        self.start_button = Button('START', center_x, center_y-28, 200, 40)
-        self.settings_button = Button('SETTINGS', center_x, center_y-78, 200, 40)
-        self.exit_button = Button('EXIT', center_x, center_y-128, 200, 40)
+        self.buttons = []
+        self.buttons.append(Button('START', center_x, center_y-28, 200, 40))
+        self.buttons.append(Button('SETTINGS', center_x, center_y-78, 200, 40))
+        self.buttons.append(Button('EXIT', center_x, center_y-128, 200, 40))
 
     def on_mouse_press(self):
-        self.goto = gamescene.GameScene
+        for b in self.buttons:
+            b.on_mouse_press()
+
+    def on_mouse_release(self):
+        for b in self.buttons:
+            if b.on_mouse_release():
+                if b.label.text == 'START':
+                    self.goto = gamescene.GameScene
+                elif b.label.text == 'SETTINGS':
+                    #TODO: zrobić przeniesienie po zrobieniu sceny
+                    pass
+                elif b.label.text == 'EXIT':
+                    pyglet.app.exit()
 
     def on_draw(self):
         pyglet.graphics.draw(4, pyglet.gl.GL_LINE_LOOP,
@@ -45,11 +58,9 @@ class MenuScene:
                                       722, 176)),
                              ('c4B', settings.cyan_frame))
         self.header.draw()
-        self.start_button.draw()
-        self.settings_button.draw()
-        self.exit_button.draw()
+        for b in self.buttons:
+            b.draw()
 
     def on_mouse_motion(self, x, y):
-        self.start_button.on_hover(x, y)
-        self.settings_button.on_hover(x, y)
-        self.exit_button.on_hover(x, y)
+        for b in self.buttons:
+            b.on_mouse_motion(x, y)

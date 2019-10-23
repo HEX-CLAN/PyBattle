@@ -23,6 +23,10 @@ def on_draw(frame_time=0):
 @window.event
 def on_mouse_press(x, y, button, modifiers):
     window.scene_o.on_mouse_press()
+
+@window.event
+def on_mouse_release(x, y, button, modifiers):
+    window.scene_o.on_mouse_release()
     if not isinstance(window.scene_o, window.scene_o.goto):
         window.scene_o = window.scene_o.goto()
 
