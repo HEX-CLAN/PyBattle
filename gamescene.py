@@ -13,9 +13,6 @@ class GameScene:
             self.game_time = time.time()
         pyglet.gl.glClearColor(0.5, 0.5, 0.5, 1)
 
-    def on_mouse_press(self):
-        self.goto = menuscene.MenuScene
-
     def on_draw(self):
         if settings.duration:
             time_label = "{:2.2f}".format(time.time() - self.game_time)
@@ -23,8 +20,14 @@ class GameScene:
             time_label.draw()
             self.grid.on_draw()
 
+    def on_resize(self, width, height):
+        pass
+
     def on_mouse_motion(self, x, y):
         pass
+
+    def on_mouse_press(self):
+        self.goto = menuscene.MenuScene
 
     def on_mouse_release(self):
         pass

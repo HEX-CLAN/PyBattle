@@ -1,6 +1,6 @@
 import pyglet
 import settings
-import gamescene
+import menuscene
 from button import Button
 
 
@@ -60,7 +60,7 @@ class MenuScene:
 
     def on_resize(self, width, height):
         pass
-
+    
     def on_mouse_motion(self, x, y):
         for b in self.buttons:
             b.on_mouse_motion(x, y)
@@ -72,7 +72,6 @@ class MenuScene:
     def on_mouse_release(self):
         for b in self.buttons:
             if b.on_mouse_release():
-                print("nacisnieto przycisk") # please do not remove yet
                 if b.label.text == 'START':
                     self.goto = gamescene.GameScene
                 elif b.label.text == 'SETTINGS':
