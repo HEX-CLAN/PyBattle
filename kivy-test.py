@@ -9,6 +9,8 @@ import math
 
 Config.set('modules', 'monitor', '')
 
+
+
 class Example(AnchorLayout):
     def __init__(self):
         super().__init__(anchor_x='center', anchor_y='center')
@@ -30,6 +32,7 @@ class Example(AnchorLayout):
             print("tb")
             pass
 
+        self.counter = 0
 
         print(self.width, self.height)
 
@@ -64,8 +67,15 @@ class Example(AnchorLayout):
     def on_mouse_down(self, x, y, button, modifiers):
         print("xd")
 
+    def on_draw(self, window):
+        self.el_c.pos = (self.center_x, self.center_y)
+        print(self.width)
+
 def on_touch_down(self, touch):
     print("click at: ", touch.pos)
+
+def on_show(self):
+    print("show")
 
 
 class MainApp(App):
@@ -74,6 +84,8 @@ class MainApp(App):
         Window.bind(on_resize=widget.on_window_resize)
         #Window.bind(on_mouse_down=widget.on_mouse_down)
         Window.bind(on_touch_down=on_touch_down)
+        Window.bind(on_show=on_show)
+        Window.bind(on_draw=widget.on_draw)
         return widget
 
 
