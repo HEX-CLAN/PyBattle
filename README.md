@@ -8,7 +8,7 @@ inspired by https://inf.ug.edu.pl/~piotao/old/xbattle/ (in Polish)
 we recommend 3.7.4 or 3.6.9, because we are using them.
 
 ##### Python packages:
-* Pyglet
+* kivy
 * numpy
 
 ##### Supported OS:

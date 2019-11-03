@@ -3,7 +3,8 @@ import time
 
 from grid_hexagon import Grid
 import settings
-import menuscene
+from app.scenes import menuscene
+
 
 class GameScene:
     def __init__(self):
