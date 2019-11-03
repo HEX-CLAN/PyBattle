@@ -1,4 +1,4 @@
-from app.scenes.menuscene import MenuScene
+from scenes.menuscene import MenuScene
 
 
 def run():
