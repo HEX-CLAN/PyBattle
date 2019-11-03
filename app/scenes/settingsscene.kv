@@ -84,13 +84,65 @@
             orientation: 'horizontal'
             Label:
                 text: 'Player\'s color:'
-                size: 259, 50
+                size: 250, 50
                 size_hint: None, None
                 pos_hint: {'center_y' : .5}
                 font_name: 'fonts/CaviarDreams.ttf'
                 font_size: 30
                 color: 1, .7, .1, 1
                 background_color: .1, .1, .1, 1
+            GridLayout:
+                cols: 6
+                padding: 30, 30
+                spacing: 20, 20
+                Label:
+                    text: '.'
+                    font_name: 'fonts/hexgon.ttf'
+                    font_size: 40
+                    color: 1, 0, 0, 1
+                CheckBox:
+                    group: 'check'
+                    id: red
+                Label:
+                    text: '.'
+                    font_name: 'fonts/hexgon.ttf'
+                    font_size: 40
+                    color: 1, .5, 0, 1
+                CheckBox:
+                    group: 'check'
+                    id: orange
+                Label:
+                    text: '.'
+                    font_name: 'fonts/hexgon.ttf'
+                    font_size: 40
+                    color: 1, 1, 0, 1
+                CheckBox:
+                    group: 'check'
+                    id: yellow
+                Label:
+                    text: '.'
+                    font_name: 'fonts/hexgon.ttf'
+                    font_size: 40
+                    color: 0, 1, .5, 1
+                CheckBox:
+                    group: 'check'
+                    id: green
+                Label:
+                    text: '.'
+                    font_name: 'fonts/hexgon.ttf'
+                    font_size: 40
+                    color: 0, .5, 1, 1
+                CheckBox:
+                    group: 'check'
+                    id: blue
+                Label:
+                    text: '.'
+                    font_name: 'fonts/hexgon.ttf'
+                    font_size: 40
+                    color: .5, 0, 1, 1
+                CheckBox:
+                    group: 'check'
+                    id: violet
 
         Button:
             text: 'BACK'
