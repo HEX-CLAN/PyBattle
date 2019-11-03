@@ -24,7 +24,74 @@
 
     BoxLayout:
         orientation: 'vertical'
-        pos_hint: {'center_y' : .8}
+        pos_hint: {'center_y' : .6}
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Width:'
+                size: 250, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : -.5}
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 30
+                color: 1, .7, .1, 1
+                background_color: .1, .1, .1, 1
+            Slider:
+                id: slider_width
+                size: 400, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : -.5}
+                min: 1024
+                max: 1900
+                step: 1
+                orientation: 'horizontal'
+            Label:
+                text: str(slider_width.value)
+                size: 100, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : -.5}
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 24
+                color: .1, 1, .8, 1
+                background_color: .1, .1, .1, 1
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Height:'
+                size: 250, 50
+                size_hint: None, None
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 30
+                color: 1, .7, .1, 1
+                background_color: .1, .1, .1, 1
+            Slider:
+                id: slider_height
+                size: 400, 50
+                size_hint: None, None
+                min: 768
+                max: 1080
+                step: 1
+                orientation: 'horizontal'
+            Label:
+                text: str(slider_height.value)
+                size: 100, 50
+                size_hint: None, None
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 24
+                color: .1, 1, .8, 1
+                background_color: .1, .1, .1, 1
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Player\'s color:'
+                size: 259, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : .5}
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 30
+                color: 1, .7, .1, 1
+                background_color: .1, .1, .1, 1
+
         Button:
             text: 'BACK'
             size: 200, 50
