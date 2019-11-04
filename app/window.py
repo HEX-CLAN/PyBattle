@@ -1,10 +1,11 @@
-from scenes.menuscene import MenuScene
+from kivy.app import App
 
 
-def run():
-    ms = MenuScene()
-    ms.run()
+class Window(App):
+    def build(self):
+        pass
 
 
 if __name__ == '__main__':
-    run()
+    w = Window()
+    w.run()

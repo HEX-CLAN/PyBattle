@@ -1,79 +1,69 @@
-#:include scenes/settingsscene.kv
-#:include scenes/gamescene.kv
+<MenuScene@Screen>:
+    name: 'menuscene'
+    background_color: .1, .1, .1, 1
 
-#:import NoTransition kivy.uix.screenmanager.NoTransition
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'top'
+        Label:
+            text: 'PYBATTLE'
+            size: 400, 120
+            size_hint: None, None
+            font_name: 'fonts/hexagon_cup.ttf'
+            font_size: 65
+            color: .1, 1, .8, 1
 
-ScreenManager:
-    transition: NoTransition()
-    Screen:
-        name: 'menuscene'
-        background_color: .1, .1, .1, 1
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'top'
+        Label:
+            text: '_                      _'
+            size: 400, 110
+            size_hint: None, None
+            font_name: 'fonts/hexgon.ttf'
+            font_size: 60
+            color: .1, 1, .8, 1
 
-        AnchorLayout:
-            anchor_x: 'center'
-            anchor_y: 'top'
-            Label:
-                text: 'PYBATTLE'
-                size: 400, 120
-                size_hint: None, None
-                font_name: 'fonts/hexagon_cup.ttf'
-                font_size: 65
-                color: .1, 1, .8, 1
-
-        AnchorLayout:
-            anchor_x: 'center'
-            anchor_y: 'top'
-            Label:
-                text: '_                      _'
-                size: 400, 110
-                size_hint: None, None
-                font_name: 'fonts/hexgon.ttf'
-                font_size: 60
-                color: .1, 1, .8, 1
-
-        BoxLayout:
-            orientation: 'vertical'
-            pos_hint: {'center_y' : .8}
-            Button:
-                text: 'START'
-                size: 200, 50
-                size_hint: None, None
-                pos_hint: {'center_x' : .5}
-                font_name: 'fonts/CaviarDreams.ttf'
-                font_size: 30
-                color: .1, 1, .8, 1
-                background_color: .1, .1, .1, 1
-                on_press: 
-                    self.color = (1, .7, .1, 1)
-                on_release: 
-                    app.root.current = 'gamescene'
-            Button:
-                text: 'SETTINGS'
-                size: 200, 50
-                size_hint: None, None
-                pos_hint: {'center_x' : .5}
-                font_name: 'fonts/CaviarDreams.ttf'
-                font_size: 30
-                color: .1, 1, .8, 1
-                background_color: .1, .1, .1, 1
-                on_press: 
-                    self.color = (1, .7, .1, 1)
-                on_release: 
-                    self.color = (.1, 1, .8, 1)
-                    app.root.current = 'settingsscene'
-            Button:
-                text: 'EXIT'
-                size: 200, 50
-                size_hint: None, None
-                pos_hint: {'center_x' : .5}
-                font_name: 'fonts/CaviarDreams.ttf'
-                font_size: 30
-                color: .1, 1, .8, 1
-                background_color: .1, .1, .1, 1
-                on_press: 
-                    self.color = (1, .7, .1, 1)
-                on_release: app.stop()
-
-    SettingsScene:
-
-    GameScene:
+    BoxLayout:
+        orientation: 'vertical'
+        pos_hint: {'center_y' : .8}
+        Button:
+            text: 'START'
+            size: 200, 50
+            size_hint: None, None
+            pos_hint: {'center_x' : .5}
+            font_name: 'fonts/CaviarDreams.ttf'
+            font_size: 30
+            color: .1, 1, .8, 1
+            background_color: .1, .1, .1, 1
+            on_press:
+                self.color = (1, .7, .1, 1)
+            on_release:
+                app.root.current = 'gamescene'
+        Button:
+            text: 'SETTINGS'
+            size: 200, 50
+            size_hint: None, None
+            pos_hint: {'center_x' : .5}
+            font_name: 'fonts/CaviarDreams.ttf'
+            font_size: 30
+            color: .1, 1, .8, 1
+            background_color: .1, .1, .1, 1
+            on_press:
+                self.color = (1, .7, .1, 1)
+            on_release:
+                self.color = (.1, 1, .8, 1)
+                app.root.current = 'settingsscene'
+        Button:
+            text: 'EXIT'
+            size: 200, 50
+            size_hint: None, None
+            pos_hint: {'center_x' : .5}
+            font_name: 'fonts/CaviarDreams.ttf'
+            font_size: 30
+            color: .1, 1, .8, 1
+            background_color: .1, .1, .1, 1
+            on_press:
+                self.color = (1, .7, .1, 1)
+            on_release:
+                app.stop()
