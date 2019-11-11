@@ -1,6 +1,6 @@
 from kivy.app import App
 from kivy.config import Config
-import scenes.gamescene
+from scenes.gamescene import GameScene
 import scenes.menuscene
 import scenes.settingsscene
 
