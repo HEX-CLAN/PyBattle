@@ -26,29 +26,22 @@ class GameScene(Screen):
             self.unit_w = self.width // self.pt_grid_size[0]
             self.unit_h = int(self.unit_w * math.sqrt(3))+ 1
 
+        self.padding = ((self.width - self.pt_grid_size[0] * self.unit_w) / 2,
+                        (self.height - self.pt_grid_size[1] * self.unit_h) / 2)
+
         for column in range(self.hex_grid_size[0]):
-            x = 3 * self.unit_w * column
+            x = 3 * self.unit_w * column + self.padding[0]
             for row in range(self.hex_grid_size[1]):
-                y = self.unit_h * 2 * row + self.unit_h * ((column+1) % 2) + self.unit_h - self.unit_w * 2
+                y = self.unit_h * 2 * row + self.unit_h * ((column+1) % 2) + self.unit_h - self.unit_w * 2 + self.padding[1]
                 self.grid[column][row].pos = (x, y)
                 self.grid[column][row].size = (self.unit_w * 4 - 2, self.unit_w * 4 - 2)
-                
-        self.rec.size=(self.pt_grid_size[0] * self.unit_w, self.pt_grid_size[1] * self.unit_h)
 
     def on_enter(self):
         print("Start Game")
-
-        self.canvas.add(Color(1, 1, 1, 1))
-        self.rec = Rectangle(pos=(0,0), size=(0, 0))
-        self.canvas.add(self.rec)
-
         self.calc_pre()
         self.calc_re()
-
         Window.bind(on_resize=self.on_window_resize)
 
-
     def on_window_resize(self, window, width, height):
-        print("resize")
         self.calc_re()
 
