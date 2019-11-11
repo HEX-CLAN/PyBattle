@@ -10,6 +10,7 @@ Config.set('modules', 'monitor', '') #FPS meter
 
 class Window(App):
     def build(self):
+        Window.size = (1740, 1360)
         pass
 
 
