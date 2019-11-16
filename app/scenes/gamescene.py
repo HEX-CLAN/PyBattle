@@ -14,13 +14,12 @@ class GameScene(Screen):
         self.grid = [[0] * self.hex_grid_size[1] for i in range(self.hex_grid_size[0])]
 
         self.col = [
-
-            Color(181 / 255, 209 / 255, 100 / 255, 1),
-            Color( 70 / 255, 132 / 255, 200 / 255, 1),
-            Color( 60 / 255, 116 / 255, 197 / 255, 1),
-            Color( 50 / 255,  99 / 255, 193 / 255, 1),
-            Color( 40 / 255,  82 / 255, 189 / 255, 1),
-            Color( 30 / 255,  65 / 255, 185 / 255, 1) 
+            (181 / 255, 209 / 255, 100 / 255, 1),
+            ( 70 / 255, 132 / 255, 200 / 255, 1),
+            ( 60 / 255, 116 / 255, 197 / 255, 1),
+            ( 50 / 255,  99 / 255, 193 / 255, 1),
+            ( 40 / 255,  82 / 255, 189 / 255, 1),
+            ( 30 / 255,  65 / 255, 185 / 255, 1)
         ]
 
         f = open('test.map', 'r')
@@ -30,7 +29,7 @@ class GameScene(Screen):
             char_i = 0
             for char in row:
                 if char in ('0', '1', '2', '3', '4', '5'):
-                    self.canvas.add(self.col[int(char)])
+                    self.canvas.add(Color(rgba=self.col[int(char)]))
                     self.grid[char_i][row_i] = Tile()
                     self.canvas.add(self.grid[char_i][row_i])
                     char_i += 1
