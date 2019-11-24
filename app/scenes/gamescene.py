@@ -3,6 +3,7 @@ from kivy.graphics import Rectangle, Color, Line, Ellipse
 from kivy.core.window import Window
 from tile import Tile
 import math
+import generator
 
 
 class GameScene(Screen):
@@ -11,30 +12,19 @@ class GameScene(Screen):
         self.hex_grid_size = (30,20)
         self.pt_grid_size = (self.hex_grid_size[0] * 3 + 1, self.hex_grid_size[1] * 2 + 1)
         self.grid_ratio = (self.pt_grid_size[0] / 2, self.pt_grid_size[1] / 2 * math.sqrt(3))
-        self.grid = [[0] * self.hex_grid_size[1] for i in range(self.hex_grid_size[0])]
 
-        self.col = [
-            (181 / 255, 209 / 255, 100 / 255, 1),
-            ( 70 / 255, 132 / 255, 200 / 255, 1),
-            ( 60 / 255, 116 / 255, 197 / 255, 1),
-            ( 50 / 255,  99 / 255, 193 / 255, 1),
-            ( 40 / 255,  82 / 255, 189 / 255, 1),
-            ( 30 / 255,  65 / 255, 185 / 255, 1)
-        ]
+        self.grid = generator.generate_map(
+                        width = self.hex_grid_size[0],
+                        height = self.hex_grid_size[1],
+                        seed = 42352336,
+                        water = 10,
+                        max_diff = 1
+                    )
 
-        f = open('test.map', 'r')
-        row_i = 0
-        char_i = 0
-        for row in f.readlines():
-            char_i = 0
-            for char in row:
-                if char in ('0', '1', '2', '3', '4', '5'):
-                    self.canvas.add(Color(rgba=self.col[int(char)]))
-                    self.grid[char_i][row_i] = Tile()
-                    self.canvas.add(self.grid[char_i][row_i])
-                    char_i += 1
-            row_i += 1
-        f.close()
+        for x in range(self.hex_grid_size[0]):
+            for y in range(self.hex_grid_size[1]):
+                self.canvas.add(self.grid[x][y].color)
+                self.canvas.add(self.grid[x][y])
 
     def recalculate(self):
         if self.width / self.grid_ratio[0] > self.height / self.grid_ratio[1]:
