@@ -7,7 +7,7 @@ import math
 
 class GameScene(Screen):
 
-    def calc_pre(self):
+    def create_grid(self):
         self.hex_grid_size = (30,20)
         self.pt_grid_size = (self.hex_grid_size[0] * 3 + 1, self.hex_grid_size[1] * 2 + 1)
         self.grid_ratio = (self.pt_grid_size[0] / 2, self.pt_grid_size[1] / 2 * math.sqrt(3))
@@ -36,7 +36,7 @@ class GameScene(Screen):
             row_i += 1
         f.close()
 
-    def calc_re(self):
+    def recalculate(self):
         if self.width / self.grid_ratio[0] > self.height / self.grid_ratio[1]:
             self.unit_h = self.height // self.pt_grid_size[1]
             self.unit_w = int(self.unit_h // math.sqrt(3))
@@ -55,10 +55,10 @@ class GameScene(Screen):
                 self.grid[column][row].size = (self.unit_w * 4 - 2, self.unit_w * 4 - 2)
 
     def on_enter(self):
-        self.calc_pre()
-        self.calc_re()
+        self.create_grid()
+        self.recalculate()
         Window.bind(on_resize=self.on_window_resize)
 
     def on_window_resize(self, window, width, height):
-        self.calc_re()
+        self.recalculate()
         print("new size:", self.width, self.height)
