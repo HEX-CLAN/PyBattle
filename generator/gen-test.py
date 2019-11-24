@@ -5,7 +5,7 @@ import random
 seed = 42352336
 width = 30
 height = 20
-water = (6, 14) # min, max
+water = 10 # min, max
 
 # INIT
 
@@ -29,7 +29,7 @@ def set_value(value, x, y, width, height):
                 v = random.randrange(min_val, value)
                 set_value(v, n[0], n[1], width, height)
 
-for r in range(random.randrange(water[0], water[1])):
+for r in range(water):
     x = random.randrange(0, width)
     y = random.randrange(0, height)
     set_value(5, x, y, width, height)
