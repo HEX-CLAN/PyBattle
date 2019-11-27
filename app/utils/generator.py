@@ -1,6 +1,6 @@
 import random
-import tile
 
+from utils import tile
 # SETUP
 
 # seed = 42352336
@@ -14,7 +14,6 @@ import tile
 # map = [[0] * height for i in range(width)]
 
 # RANDOM GENERATOR
-
 def set_value(map, value, x, y, width, height, max_diff):
     map[x][y].set_depth(value)
     if value > 0:
