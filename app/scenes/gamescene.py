@@ -1,9 +1,8 @@
 from kivy.uix.screenmanager import Screen
-from kivy.graphics import Rectangle, Color, Line, Ellipse
 from kivy.core.window import Window
-from tile import Tile
 import math
-import generator
+
+from utils import generator
 
 
 class GameScene(Screen):
