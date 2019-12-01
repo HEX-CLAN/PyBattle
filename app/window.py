@@ -1,10 +1,10 @@
 from kivy.app import App
-from kivy.config import Config
+from kivy.config import Config, ConfigParser
 import scenes.gamescene
 import scenes.menuscene
 import scenes.settingsscene
 
-from scenes.settingsscene import json_settings
+from scenes.settingsscene import json_settings, SettingsScene
 
 Config.set('modules', 'monitor', '') #FPS meter
 
@@ -18,13 +18,13 @@ class Window(App):
         config.setdefaults("General", {'width': 768, 'height': 1024})
 
     def build_settings(self, settings):
-        settings.add_json_panel("Settings", self.config, data=json_settings)
+        user_config = ConfigParser()
+        user_config.read('window.ini')
+        settings.add_json_panel("Settings", user_config, data=json_settings)
 
     def on_config_change(self, config, section, key, value):
-        if key == "width":
-            Config.set('graphics', 'width', value)
-        elif key == "height":
-            Config.set('graphics', 'height', value)
+        settings_scene = SettingsScene()
+        settings_scene.update_changes(key, value)
 
 
 if __name__ == '__main__':
