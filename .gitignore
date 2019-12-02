@@ -1,3 +1,5 @@
+app/window.ini
+
 .vscode/*
 *.DS_Store
 __pycache__/*
