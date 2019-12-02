@@ -1,3 +1,161 @@
 #:kivy 1.11.1
 <SettingsScene>:
     name: 'settingsscene'
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'top'
+        Label:
+            text: 'SETTINGS'
+            size: 400, 120
+            size_hint: None, None
+            font_name: 'fonts/hexagon_cup.ttf'
+            font_size: 65
+            color: .1, 1, .8, 1
+
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'top'
+        Label:
+            text: '_                      _'
+            size: 400, 110
+            size_hint: None, None
+            font_name: 'fonts/hexgon.ttf'
+            font_size: 60
+            color: .1, 1, .8, 1
+
+    BoxLayout:
+        orientation: 'vertical'
+        pos_hint: {'center_y' : .6}
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Width:'
+                size: 250, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : -.5}
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 30
+                color: 1, .7, .1, 1
+                background_color: .1, .1, .1, 1
+            Slider:
+                id: slider_width
+                size: 400, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : -.5}
+                min: 1024
+                max: 1900
+                step: 1
+                orientation: 'horizontal'
+            Label:
+                text: str(slider_width.value)
+                size: 100, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : -.5}
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 24
+                color: .1, 1, .8, 1
+                background_color: .1, .1, .1, 1
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Height:'
+                size: 250, 50
+                size_hint: None, None
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 30
+                color: 1, .7, .1, 1
+                background_color: .1, .1, .1, 1
+            Slider:
+                id: slider_height
+                size: 400, 50
+                size_hint: None, None
+                min: 768
+                max: 1080
+                step: 1
+                orientation: 'horizontal'
+            Label:
+                text: str(slider_height.value)
+                size: 100, 50
+                size_hint: None, None
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 24
+                color: .1, 1, .8, 1
+                background_color: .1, .1, .1, 1
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Player\'s color:'
+                size: 250, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : .5}
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 30
+                color: 1, .7, .1, 1
+                background_color: .1, .1, .1, 1
+            GridLayout:
+                cols: 6
+                padding: 30, 30
+                spacing: 20, 20
+                Label:
+                    text: '.'
+                    font_name: 'fonts/hexgon.ttf'
+                    font_size: 40
+                    color: 1, 0, 0, 1
+                CheckBox:
+                    group: 'check'
+                    id: red
+                Label:
+                    text: '.'
+                    font_name: 'fonts/hexgon.ttf'
+                    font_size: 40
+                    color: 1, .5, 0, 1
+                CheckBox:
+                    group: 'check'
+                    id: orange
+                Label:
+                    text: '.'
+                    font_name: 'fonts/hexgon.ttf'
+                    font_size: 40
+                    color: 1, 1, 0, 1
+                CheckBox:
+                    group: 'check'
+                    id: yellow
+                Label:
+                    text: '.'
+                    font_name: 'fonts/hexgon.ttf'
+                    font_size: 40
+                    color: 0, 1, .5, 1
+                CheckBox:
+                    group: 'check'
+                    id: green
+                Label:
+                    text: '.'
+                    font_name: 'fonts/hexgon.ttf'
+                    font_size: 40
+                    color: 0, .5, 1, 1
+                CheckBox:
+                    group: 'check'
+                    id: blue
+                Label:
+                    text: '.'
+                    font_name: 'fonts/hexgon.ttf'
+                    font_size: 40
+                    color: .5, 0, 1, 1
+                CheckBox:
+                    group: 'check'
+                    id: violet
+
+        Button:
+            text: 'BACK'
+            size: 200, 50
+            size_hint: None, None
+            pos_hint: {'center_x' : .5}
+            font_name: 'fonts/CaviarDreams.ttf'
+            font_size: 30
+            color: .1, 1, .8, 1
+            background_color: .1, .1, .1, 1
+            on_press: 
+                self.color = (1, .7, .1, 1)
+            on_release: 
+                self.color = (.1, 1, .8, 1)
+                app.root.current = 'menuscene'
