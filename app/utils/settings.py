@@ -13,7 +13,8 @@ duration = True
 class Settings:
     user_data = {
         'width': MIN_WINDOW_HEIGHT,
-        'height': MIN_WINDOW_HEIGHT
+        'height': MIN_WINDOW_HEIGHT,
+        'user_color': 'red'
     }
 
     def set_default_settings(self):
@@ -36,6 +37,7 @@ class Settings:
 
     def update(self):
         Window.size = (self.user_data['width'], self.user_data['height'])
+
 
     def save(self):
         np.save('data/userdata.npy', self.user_data)
