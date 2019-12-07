@@ -6,6 +6,7 @@ import scenes.gamesettingsscene
 from kivy.app import App
 from kivy.config import Config
 
+
 Config.set('modules', 'monitor', '') #FPS meter
 
 
@@ -15,7 +16,7 @@ class Window(App):
         self.use_kivy_settings = False
 
     def build(self):
-        # TODO: sprawdzić co z tym resizable jest nie tak (z jakiegoś powodu nie mogę tego zablokować)
+        # (wszyscy) TODO: sprawdzić co z tym resizable jest nie tak (z jakiegoś powodu nie mogę tego zablokować)
         Config.set('graphics', 'resizable', 0)
 
 

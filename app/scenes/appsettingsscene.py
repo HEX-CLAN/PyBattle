@@ -5,18 +5,22 @@ from kivy import Config
 from kivy.core.window import Window
 from kivy.uix.screenmanager import Screen
 
+from utils import settings
+
 
 class AppSettingsScene(Screen):
     MIN_WINDOW_WIDTH = 1024
     MAX_WINDOW_WIDTH = 1920
     MIN_WINDOW_HEIGHT = 768
     MAX_WINDOW_HEIGHT = 1080
+    FULLSCREEN = False # (c) TODO: zaimplementować opcję zmiany na fullscreen
 
     def __init__(self, **kw):
         super().__init__(**kw)
         self.app_data = {
             'width': self.MIN_WINDOW_WIDTH,
-            'height': self.MIN_WINDOW_HEIGHT
+            'height': self.MIN_WINDOW_HEIGHT,
+            'fullscreen': self.FULLSCREEN
         }
         if os.path.isfile('data/app.npy'):
             self.read_app_settings_data()
@@ -45,6 +49,7 @@ class AppSettingsScene(Screen):
 
     def update(self):
         Window.size = (self.app_data['width'], self.app_data['height'])
+        settings.app_data = self.app_data
 
     def save_to_file(self):
         np.save('data/app.npy', self.app_data)
