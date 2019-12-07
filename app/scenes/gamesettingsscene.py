@@ -26,8 +26,8 @@ class GameSettingsScene(Screen):
             'water_level': 0,  # (ak) TODO: ustawić domyślną ilość wody
             'player_color': 'red', # (wszyscy) TODO: ustawić domyślny kolor gracza
             'amount_of_players': 2, # (ak) TODO: ustawić domyślną ilość graczy
-            'map_width': 0, # (ak) TODO: ustawić domyślną wysokość planszy
-            'map_height': 0,  # (ak) TODO: ustawić domyślną szerokość planszy
+            'map_width': 5, # (ak) TODO: ustawić domyślną wysokość planszy
+            'map_height': 5,  # (ak) TODO: ustawić domyślną szerokość planszy
             'game_speed': 0, # (ak) TODO: ustawić domyślną szybkość gry
             'enemies_speed': 0 # (ak) TODO: ustawić domyślną szybkość przeciwników
         }
@@ -45,9 +45,10 @@ class GameSettingsScene(Screen):
     def read_game_settings_data(self):
         self.game_data = np.load('data/game.npy', allow_pickle=True).item()
 
-    def get_new_data_and_save(self, new_water_level, new_player_color):
+    def get_new_data_and_save(self, new_water_level, new_player_color, new_amount_of_players):
         self.game_data['water_level'] = new_water_level
         self.game_data['player_color'] = new_player_color
+        self.game_data['amount_of_players'] = new_amount_of_players
         self.save_to_file()
 
     def update(self):
