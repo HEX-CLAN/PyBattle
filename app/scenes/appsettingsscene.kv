@@ -42,8 +42,9 @@
                 size: 400, 50
                 size_hint: None, None
                 pos_hint: {'center_y' : -.5}
-                min: 1024
-                max: 1900
+                min: root.MIN_WINDOW_WIDTH
+                max: root.MAX_WINDOW_WIDTH
+                value: root.app_data['width']
                 step: 1
                 orientation: 'horizontal'
             Label:
@@ -69,8 +70,9 @@
                 id: slider_height
                 size: 400, 50
                 size_hint: None, None
-                min: 768
-                max: 1080
+                min: root.MIN_WINDOW_HEIGHT
+                max: root.MAX_WINDOW_HEIGHT
+                value: root.app_data['height']
                 step: 1
                 orientation: 'horizontal'
             Label:

@@ -1,17 +1,52 @@
-from kivy.uix.screenmanager import Screen
+import os
 
-from utils.settings import Settings
+import numpy as np
+from kivy import Config
+from kivy.core.window import Window
+from kivy.uix.screenmanager import Screen
 
 
 class AppSettingsScene(Screen):
-    user_new_data = {
-        'width': None,
-        'height': None,
-        'user_color': ''
-    }
+    MIN_WINDOW_WIDTH = 1024
+    MAX_WINDOW_WIDTH = 1920
+    MIN_WINDOW_HEIGHT = 768
+    MAX_WINDOW_HEIGHT = 1080
+
+    def __init__(self, **kw):
+        super().__init__(**kw)
+        self.app_data = {
+            'width': self.MIN_WINDOW_WIDTH,
+            'height': self.MIN_WINDOW_HEIGHT
+        }
+        print(self.app_data)
+        if os.path.isfile('data/app.npy'):
+            self.read_app_data()
+            self.update()
+        else:
+            self.create_user_file()
+            self.set_default_settings()
+
+    def set_default_settings(self):
+        Config.set('graphics', 'width', self.MIN_WINDOW_WIDTH)
+        Config.set('graphics', 'height', self.MIN_WINDOW_HEIGHT)
+
+    def create_user_file(self):
+        f = open('data/app.npy', 'w+')
+        f.close()
+        np.save('data/app.npy', self.app_data)
+
+    def read_app_data(self):
+        self.app_data = np.load('data/app.npy', allow_pickle=True).item()
 
     def get_new_data(self, new_width, new_height):
-        self.user_new_data['width'] = new_width
-        self.user_new_data['height'] = new_height
-        s = Settings()
-        s.update_and_save(self.user_new_data)
+        self.app_data['width'] = new_width
+        self.app_data['height'] = new_height
+        self.update()
+        self.save_to_file()
+
+    def update(self):
+        Window.size = (self.app_data['width'], self.app_data['height'])
+
+    def save_to_file(self):
+        np.save('data/app.npy', self.app_data)
+        print(self.app_data)

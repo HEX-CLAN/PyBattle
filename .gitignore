@@ -1,4 +1,4 @@
-app/data/userdata.npy
+app/data/app.npy
 
 .vscode/*
 *.DS_Store
