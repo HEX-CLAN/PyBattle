@@ -1,5 +1,6 @@
 #:kivy 1.11.1
-#:include scenes/settingsscene.kv
+#:include scenes/appsettingsscene.kv
+#:include scenes/gamesettingsscene.kv
 #:include scenes/gamescene.kv
 #:include scenes/menuscene.kv
 #:import NoTransition kivy.uix.screenmanager.NoTransition
@@ -10,6 +11,8 @@ ScreenManager:
 
     MenuScene:
 
-    SettingsScene:
+    GameSettingsScene:
+
+    AppSettingsScene:
 
     GameScene:
