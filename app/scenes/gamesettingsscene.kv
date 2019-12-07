@@ -57,6 +57,46 @@
                 font_size: 24
                 color: .1, 1, .8, 1
                 background_color: .1, .1, .1, 1
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Player\'s color:'
+                size: 250, 50
+                size_hint: None, None
+                #pos_hint: {'center_y' : -.5}
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 30
+                color: 1, .7, .1, 1
+                background_color: .1, .1, .1, 1
+            BoxLayout:
+                Button:
+                    id: color_button
+                    text: root.game_data['player_color']
+                    on_parent: color_dropdown.dismiss()
+                    on_release: color_dropdown.open(self)
+                    size_hint: None, None
+                    size: 200, 50
+                DropDown:
+                    id: color_dropdown
+                    on_select: color_button.text = '{}'.format(args[1])
+                    Button:
+                        id: red
+                        text: 'red'
+                        size_hint_y: None
+                        height: 44
+                        on_release: color_dropdown.select('red')
+                    Button:
+                        id: yellow
+                        text: 'yellow'
+                        size_hint_y: None
+                        height: 44
+                        on_release: color_dropdown.select('yellow')
+                    Button:
+                        id: blue
+                        text: 'blue'
+                        size_hint_y: None
+                        height: 44
+                        on_release: color_dropdown.select('blue')
 
     Button:
         text: 'START'
@@ -87,5 +127,5 @@
             self.color = (1, .7, .1, 1)
         on_release:
             self.color = (.1, 1, .8, 1)
-            root.get_new_data_and_save(slider_water_level.value)
+            root.get_new_data_and_save(slider_water_level.value, color_button.text)
             app.root.current = 'menuscene'
