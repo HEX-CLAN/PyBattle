@@ -25,7 +25,7 @@
 
     BoxLayout:
         orientation: 'vertical'
-        pos_hint: {'center_y' : .6}
+        pos_hint: {'center_x' : .6, 'center_y' : .8}
         BoxLayout:
             orientation: 'horizontal'
             Label:
@@ -84,18 +84,18 @@
                 color: .1, 1, .8, 1
                 background_color: .1, .1, .1, 1
 
-        Button:
-            text: 'BACK'
-            size: 200, 50
-            size_hint: None, None
-            pos_hint: {'center_x' : .5}
-            font_name: 'fonts/CaviarDreams.ttf'
-            font_size: 30
-            color: .1, 1, .8, 1
-            background_color: .1, .1, .1, 1
-            on_press: 
-                self.color = (1, .7, .1, 1)
-            on_release: 
-                self.color = (.1, 1, .8, 1)
-                root.get_new_data(slider_width.value, slider_height.value)
-                app.root.current = 'menuscene'
+    Button:
+        text: 'BACK'
+        size: 200, 50
+        size_hint: None, None
+        pos_hint: {'center_x' : .5, 'center_y' : .1}
+        font_name: 'fonts/CaviarDreams.ttf'
+        font_size: 30
+        color: .1, 1, .8, 1
+        background_color: .1, .1, .1, 1
+        on_press:
+            self.color = (1, .7, .1, 1)
+        on_release:
+            self.color = (.1, 1, .8, 1)
+            root.get_new_data_and_save(slider_width.value, slider_height.value)
+            app.root.current = 'menuscene'

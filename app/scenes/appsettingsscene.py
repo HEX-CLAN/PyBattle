@@ -18,9 +18,8 @@ class AppSettingsScene(Screen):
             'width': self.MIN_WINDOW_WIDTH,
             'height': self.MIN_WINDOW_HEIGHT
         }
-        print(self.app_data)
         if os.path.isfile('data/app.npy'):
-            self.read_app_data()
+            self.read_app_settings_data()
             self.update()
         else:
             self.create_user_file()
@@ -35,10 +34,10 @@ class AppSettingsScene(Screen):
         f.close()
         np.save('data/app.npy', self.app_data)
 
-    def read_app_data(self):
+    def read_app_settings_data(self):
         self.app_data = np.load('data/app.npy', allow_pickle=True).item()
 
-    def get_new_data(self, new_width, new_height):
+    def get_new_data_and_save(self, new_width, new_height):
         self.app_data['width'] = new_width
         self.app_data['height'] = new_height
         self.update()
@@ -49,4 +48,3 @@ class AppSettingsScene(Screen):
 
     def save_to_file(self):
         np.save('data/app.npy', self.app_data)
-        print(self.app_data)

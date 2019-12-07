@@ -1,4 +1,5 @@
 app/data/app.npy
+app/data/game.npy
 
 .vscode/*
 *.DS_Store
