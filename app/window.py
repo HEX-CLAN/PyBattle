@@ -14,6 +14,7 @@ class Window(App):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.use_kivy_settings = False
+        self.title = 'PYBATTLE'
 
     def build(self):
         Config.set('graphics', 'resizable', '0')
