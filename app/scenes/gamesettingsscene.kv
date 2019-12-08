@@ -26,14 +26,13 @@
 
     BoxLayout:
         orientation: 'vertical'
-        pos_hint: {'center_x' : .6, 'center_y' : .8}
+        pos_hint: {'center_x' : .6, 'center_y' : .4}
         BoxLayout:
             orientation: 'horizontal'
             Label:
                 text: 'Water level:'
                 size: 250, 50
                 size_hint: None, None
-                #pos_hint: {'center_y' : -.5}
                 font_name: 'fonts/CaviarDreams.ttf'
                 font_size: 30
                 color: 1, .7, .1, 1
@@ -42,7 +41,6 @@
                 id: slider_water_level
                 size: 400, 50
                 size_hint: None, None
-                #pos_hint: {'center_y' : -.5}
                 min: root.MIN_WATER_LEVEL
                 max: root.MAX_WATER_LEVEL
                 value: root.game_data['water_level']
@@ -52,7 +50,6 @@
                 text: str(int(slider_water_level.value)) + '%'
                 size: 100, 50
                 size_hint: None, None
-                #pos_hint: {'center_y' : -.5}
                 font_name: 'fonts/CaviarDreams.ttf'
                 font_size: 24
                 color: .1, 1, .8, 1
@@ -63,7 +60,7 @@
                 text: 'Player\'s color:'
                 size: 250, 50
                 size_hint: None, None
-                #pos_hint: {'center_y' : -.5}
+                pos_hint: {'center_y' : .6}
                 font_name: 'fonts/CaviarDreams.ttf'
                 font_size: 30
                 color: 1, .7, .1, 1
@@ -76,6 +73,7 @@
                     on_release: color_dropdown.open(self)
                     size_hint: None, None
                     size: 200, 50
+                    pos_hint: {'center_y' : .6}
                 DropDown:
                     id: color_dropdown
                     on_select: color_button.text = '{}'.format(args[1])
@@ -103,7 +101,7 @@
                 text: 'Amount of players:'
                 size: 250, 50
                 size_hint: None, None
-                #pos_hint: {'center_y' : -.5}
+                pos_hint: {'center_y' : 1}
                 font_name: 'fonts/CaviarDreams.ttf'
                 font_size: 30
                 color: 1, .7, .1, 1
@@ -112,7 +110,7 @@
                 id: slider_amount_of_players
                 size: 400, 50
                 size_hint: None, None
-                #pos_hint: {'center_y' : -.5}
+                pos_hint: {'center_y' : 1}
                 min: root.MIN_AMOUNT_OF_PLAYERS
                 max: root.MAX_AMOUNT_OF_PLAYERS
                 value: root.game_data['amount_of_players']
@@ -122,7 +120,7 @@
                 text: str(slider_amount_of_players.value)
                 size: 100, 50
                 size_hint: None, None
-                #pos_hint: {'center_y' : -.5}
+                pos_hint: {'center_y' : 1}
                 font_name: 'fonts/CaviarDreams.ttf'
                 font_size: 24
                 color: .1, 1, .8, 1
@@ -133,7 +131,7 @@
                 text: 'Map width:'
                 size: 250, 50
                 size_hint: None, None
-                #pos_hint: {'center_y' : -.5}
+                pos_hint: {'center_y' : 1.4}
                 font_name: 'fonts/CaviarDreams.ttf'
                 font_size: 30
                 color: 1, .7, .1, 1
@@ -142,7 +140,7 @@
                 id: slider_map_width
                 size: 400, 50
                 size_hint: None, None
-                #pos_hint: {'center_y' : -.5}
+                pos_hint: {'center_y' : 1.4}
                 min: root.MIN_MAP_WIDTH
                 max: root.MAX_MAP_WIDTH
                 value: root.game_data['map_width']
@@ -152,7 +150,7 @@
                 text: str(slider_map_width.value)
                 size: 100, 50
                 size_hint: None, None
-                #pos_hint: {'center_y' : -.5}
+                pos_hint: {'center_y' : 1.4}
                 font_name: 'fonts/CaviarDreams.ttf'
                 font_size: 24
                 color: .1, 1, .8, 1
@@ -163,7 +161,7 @@
                 text: 'Map height:'
                 size: 250, 50
                 size_hint: None, None
-                #pos_hint: {'center_y' : -.5}
+                pos_hint: {'center_y' : 1.8}
                 font_name: 'fonts/CaviarDreams.ttf'
                 font_size: 30
                 color: 1, .7, .1, 1
@@ -172,7 +170,7 @@
                 id: slider_map_height
                 size: 400, 50
                 size_hint: None, None
-                #pos_hint: {'center_y' : -.5}
+                pos_hint: {'center_y' : 1.8}
                 min: root.MIN_MAP_HEIGHT
                 max: root.MAX_MAP_HEIGHT
                 value: root.game_data['map_height']
@@ -182,7 +180,7 @@
                 text: str(slider_map_height.value)
                 size: 100, 50
                 size_hint: None, None
-                #pos_hint: {'center_y' : -.5}
+                pos_hint: {'center_y' : 1.8}
                 font_name: 'fonts/CaviarDreams.ttf'
                 font_size: 24
                 color: .1, 1, .8, 1
@@ -193,7 +191,7 @@
                 text: 'Game speed:'
                 size: 250, 50
                 size_hint: None, None
-                #pos_hint: {'center_y' : -.5}
+                pos_hint: {'center_y' : 2.2}
                 font_name: 'fonts/CaviarDreams.ttf'
                 font_size: 30
                 color: 1, .7, .1, 1
@@ -202,7 +200,7 @@
                 id: slider_game_speed
                 size: 400, 50
                 size_hint: None, None
-                #pos_hint: {'center_y' : -.5}
+                pos_hint: {'center_y' : 2.2}
                 min: root.MIN_GAME_SPEED
                 max: root.MAX_GAME_SPEED
                 value: root.game_data['game_speed']
@@ -212,7 +210,7 @@
                 text: str(slider_game_speed.value)
                 size: 100, 50
                 size_hint: None, None
-                #pos_hint: {'center_y' : -.5}
+                pos_hint: {'center_y' : 2.2}
                 font_name: 'fonts/CaviarDreams.ttf'
                 font_size: 24
                 color: .1, 1, .8, 1
@@ -223,7 +221,7 @@
                 text: 'Enemies speed:'
                 size: 250, 50
                 size_hint: None, None
-                #pos_hint: {'center_y' : -.5}
+                pos_hint: {'center_y' : 2.6}
                 font_name: 'fonts/CaviarDreams.ttf'
                 font_size: 30
                 color: 1, .7, .1, 1
@@ -232,7 +230,7 @@
                 id: slider_enemies_speed
                 size: 400, 50
                 size_hint: None, None
-                #pos_hint: {'center_y' : -.5}
+                pos_hint: {'center_y' : 2.6}
                 min: root.MIN_ENEMIES_SPEED
                 max: root.MAX_ENEMIES_SPEED
                 value: root.game_data['enemies_speed']
@@ -242,7 +240,7 @@
                 text: str(slider_enemies_speed.value)
                 size: 100, 50
                 size_hint: None, None
-                #pos_hint: {'center_y' : -.5}
+                pos_hint: {'center_y' : 2.6}
                 font_name: 'fonts/CaviarDreams.ttf'
                 font_size: 24
                 color: .1, 1, .8, 1
