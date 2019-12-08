@@ -46,12 +46,14 @@ class GameSettingsScene(Screen):
         self.game_data = np.load('data/game.npy', allow_pickle=True).item()
 
     def get_new_data_and_save(self, new_water_level, new_player_color, new_amount_of_players, new_map_width,
-                              new_map_height):
+                              new_map_height, new_game_speed, new_enemies_speed):
         self.game_data['water_level'] = new_water_level
         self.game_data['player_color'] = new_player_color
         self.game_data['amount_of_players'] = new_amount_of_players
         self.game_data['map_width'] = new_map_width
         self.game_data['map_height'] = new_map_height
+        self.game_data['game_speed'] = new_game_speed
+        self.game_data['enemies_speed'] = new_enemies_speed
         self.save_to_file()
 
     def update(self):
