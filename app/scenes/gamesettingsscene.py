@@ -11,13 +11,13 @@ class GameSettingsScene(Screen):
     MAX_WATER_LEVEL = 100
     MIN_AMOUNT_OF_PLAYERS = 2
     MAX_AMOUNT_OF_PLAYERS = 8
-    MIN_MAP_WIDTH = 5,
-    MAX_MAP_WIDTH = 40,
-    MIN_MAP_HEIGHT = 5,
-    MAX_MAP_HEIGHT = 40,
-    MIN_GAME_SPEED = 0,
-    MAX_GAME_SPEED = 5,
-    MIN_ENEMIES_SPEED = 0,
+    MIN_MAP_WIDTH = 5
+    MAX_MAP_WIDTH = 40
+    MIN_MAP_HEIGHT = 5
+    MAX_MAP_HEIGHT = 40
+    MIN_GAME_SPEED = 0
+    MAX_GAME_SPEED = 5
+    MIN_ENEMIES_SPEED = 0
     MAX_ENEMIES_SPEED = 5
 
     def __init__(self, **kw):
@@ -45,10 +45,13 @@ class GameSettingsScene(Screen):
     def read_game_settings_data(self):
         self.game_data = np.load('data/game.npy', allow_pickle=True).item()
 
-    def get_new_data_and_save(self, new_water_level, new_player_color, new_amount_of_players):
+    def get_new_data_and_save(self, new_water_level, new_player_color, new_amount_of_players, new_map_width,
+                              new_map_height):
         self.game_data['water_level'] = new_water_level
         self.game_data['player_color'] = new_player_color
         self.game_data['amount_of_players'] = new_amount_of_players
+        self.game_data['map_width'] = new_map_width
+        self.game_data['map_height'] = new_map_height
         self.save_to_file()
 
     def update(self):
