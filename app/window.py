@@ -16,8 +16,8 @@ class Window(App):
         self.use_kivy_settings = False
 
     def build(self):
-        # (wszyscy) TODO: sprawdzić co z tym resizable jest nie tak (z jakiegoś powodu nie mogę tego zablokować)
-        Config.set('graphics', 'resizable', 0)
+        Config.set('graphics', 'resizable', '0')
+        Config.write()
 
 
 if __name__ == '__main__':
