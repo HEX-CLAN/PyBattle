@@ -38,6 +38,8 @@ class GameSettingsScene(Screen):
             self.create_game_file()
 
     def create_game_file(self):
+        if not os.path.isdir('data'):
+            os.mkdir('data')
         f = open('data/game.npy', 'w+')
         f.close()
         np.save('data/game.npy', self.game_data)
