@@ -1,0 +1,279 @@
+#:kivy 1.11.1
+<GameSettingsScene>:
+    name: 'gamesettingsscene'
+
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'top'
+        Label:
+            text: 'NEW GAME'
+            size: 400, 120
+            size_hint: None, None
+            font_name: 'fonts/hexagon_cup.ttf'
+            font_size: 65
+            color: .1, 1, .8, 1
+
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'top'
+        Label:
+            text: '_                      _'
+            size: 400, 110
+            size_hint: None, None
+            font_name: 'fonts/hexgon.ttf'
+            font_size: 60
+            color: .1, 1, .8, 1
+
+    BoxLayout:
+        orientation: 'vertical'
+        pos_hint: {'center_x' : .6, 'center_y' : .4}
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Water level:'
+                size: 250, 50
+                size_hint: None, None
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 30
+                color: 1, .7, .1, 1
+                background_color: .1, .1, .1, 1
+            Slider:
+                id: slider_water_level
+                size: 400, 50
+                size_hint: None, None
+                min: root.MIN_WATER_LEVEL
+                max: root.MAX_WATER_LEVEL
+                value: root.game_data['water_level']
+                step: 1
+                orientation: 'horizontal'
+            Label:
+                text: str(int(slider_water_level.value)) + '%'
+                size: 100, 50
+                size_hint: None, None
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 24
+                color: .1, 1, .8, 1
+                background_color: .1, .1, .1, 1
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Player\'s color:'
+                size: 250, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : .6}
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 30
+                color: 1, .7, .1, 1
+                background_color: .1, .1, .1, 1
+            BoxLayout:
+                Button:
+                    id: color_button
+                    text: root.game_data['player_color']
+                    on_parent: color_dropdown.dismiss()
+                    on_release: color_dropdown.open(self)
+                    size_hint: None, None
+                    size: 200, 50
+                    pos_hint: {'center_y' : .6}
+                DropDown:
+                    id: color_dropdown
+                    on_select: color_button.text = '{}'.format(args[1])
+                    Button:
+                        id: red
+                        text: 'red'
+                        size_hint_y: None
+                        height: 44
+                        on_release: color_dropdown.select('red')
+                    Button:
+                        id: yellow
+                        text: 'yellow'
+                        size_hint_y: None
+                        height: 44
+                        on_release: color_dropdown.select('yellow')
+                    Button:
+                        id: blue
+                        text: 'blue'
+                        size_hint_y: None
+                        height: 44
+                        on_release: color_dropdown.select('blue')
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Amount of players:'
+                size: 250, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : 1}
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 30
+                color: 1, .7, .1, 1
+                background_color: .1, .1, .1, 1
+            Slider:
+                id: slider_amount_of_players
+                size: 400, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : 1}
+                min: root.MIN_AMOUNT_OF_PLAYERS
+                max: root.MAX_AMOUNT_OF_PLAYERS
+                value: root.game_data['amount_of_players']
+                step: 1
+                orientation: 'horizontal'
+            Label:
+                text: str(slider_amount_of_players.value)
+                size: 100, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : 1}
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 24
+                color: .1, 1, .8, 1
+                background_color: .1, .1, .1, 1
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Map width:'
+                size: 250, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : 1.4}
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 30
+                color: 1, .7, .1, 1
+                background_color: .1, .1, .1, 1
+            Slider:
+                id: slider_map_width
+                size: 400, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : 1.4}
+                min: root.MIN_MAP_WIDTH
+                max: root.MAX_MAP_WIDTH
+                value: root.game_data['map_width']
+                step: 1
+                orientation: 'horizontal'
+            Label:
+                text: str(slider_map_width.value)
+                size: 100, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : 1.4}
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 24
+                color: .1, 1, .8, 1
+                background_color: .1, .1, .1, 1
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Map height:'
+                size: 250, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : 1.8}
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 30
+                color: 1, .7, .1, 1
+                background_color: .1, .1, .1, 1
+            Slider:
+                id: slider_map_height
+                size: 400, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : 1.8}
+                min: root.MIN_MAP_HEIGHT
+                max: root.MAX_MAP_HEIGHT
+                value: root.game_data['map_height']
+                step: 1
+                orientation: 'horizontal'
+            Label:
+                text: str(slider_map_height.value)
+                size: 100, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : 1.8}
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 24
+                color: .1, 1, .8, 1
+                background_color: .1, .1, .1, 1
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Game speed:'
+                size: 250, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : 2.2}
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 30
+                color: 1, .7, .1, 1
+                background_color: .1, .1, .1, 1
+            Slider:
+                id: slider_game_speed
+                size: 400, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : 2.2}
+                min: root.MIN_GAME_SPEED
+                max: root.MAX_GAME_SPEED
+                value: root.game_data['game_speed']
+                step: 1
+                orientation: 'horizontal'
+            Label:
+                text: str(slider_game_speed.value)
+                size: 100, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : 2.2}
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 24
+                color: .1, 1, .8, 1
+                background_color: .1, .1, .1, 1
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Enemies speed:'
+                size: 250, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : 2.6}
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 30
+                color: 1, .7, .1, 1
+                background_color: .1, .1, .1, 1
+            Slider:
+                id: slider_enemies_speed
+                size: 400, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : 2.6}
+                min: root.MIN_ENEMIES_SPEED
+                max: root.MAX_ENEMIES_SPEED
+                value: root.game_data['enemies_speed']
+                step: 1
+                orientation: 'horizontal'
+            Label:
+                text: str(slider_enemies_speed.value)
+                size: 100, 50
+                size_hint: None, None
+                pos_hint: {'center_y' : 2.6}
+                font_name: 'fonts/CaviarDreams.ttf'
+                font_size: 24
+                color: .1, 1, .8, 1
+                background_color: .1, .1, .1, 1
+
+    Button:
+        text: 'START'
+        size: 200, 50
+        size_hint: None, None
+        pos_hint: {'center_x' : .5, 'center_y' : .17}
+        font_name: 'fonts/CaviarDreams.ttf'
+        font_size: 30
+        color: .1, 1, .8, 1
+        background_color: .1, .1, .1, 1
+        on_press:
+            self.color = (1, .7, .1, 1)
+        on_release:
+            self.color = (.1, 1, .8, 1)
+            root.get_new_data_and_save(slider_water_level.value, color_button.text, slider_amount_of_players.value, slider_map_width.value, slider_map_height.value, slider_game_speed.value, slider_enemies_speed.value)
+            app.root.current = 'gamescene'
+
+    Button:
+        text: 'BACK'
+        size: 200, 50
+        size_hint: None, None
+        pos_hint: {'center_x' : .5, 'center_y' : .1}
+        font_name: 'fonts/CaviarDreams.ttf'
+        font_size: 30
+        color: .1, 1, .8, 1
+        background_color: .1, .1, .1, 1
+        on_press:
+            self.color = (1, .7, .1, 1)
+        on_release:
+            self.color = (.1, 1, .8, 1)
+            root.get_new_data_and_save(slider_water_level.value, color_button.text, slider_amount_of_players.value, slider_map_width.value, slider_map_height.value, slider_game_speed.value, slider_enemies_speed.value)
+            app.root.current = 'menuscene'
