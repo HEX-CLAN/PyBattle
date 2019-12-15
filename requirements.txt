@@ -1,3 +1,2 @@
-pyglet
 numpy
 kivy
