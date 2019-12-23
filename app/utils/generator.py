@@ -35,7 +35,7 @@ def generate_map(width, height, seed, water, max_diff):
 
     for x in range(width):
         for y in range(height):
-            grid[x][y] = tile.Tile()
+            grid[x][y] = tile.Tile((x,y))
 
     for r in range(water):
         x = random.randrange(0, width)

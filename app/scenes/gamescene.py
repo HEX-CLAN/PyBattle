@@ -1,6 +1,9 @@
 from kivy.uix.screenmanager import Screen
 from kivy.core.window import Window
+from kivy.graphics import *
+import numpy
 import math
+from utils.tile import util_get_closest_tile
 
 from utils import generator
 
@@ -51,3 +54,17 @@ class GameScene(Screen):
     def on_window_resize(self, window, width, height):
         self.recalculate()
         print("new size:", self.width, self.height)
+
+    def on_touch_down(self, touch):
+        position = (touch.x,touch.y)
+        tiles = []
+        for x in range(len(self.grid)):
+            for y in range(len(self.grid[0])):
+                if self.grid[x][y].contains(position):
+                    tiles.append(self.grid[x][y])
+
+        tile = util_get_closest_tile(tiles,position)
+        if(tile != None):
+            print(tile.index)
+        else:
+            print("Poza")

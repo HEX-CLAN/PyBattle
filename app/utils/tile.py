@@ -1,4 +1,5 @@
 from kivy.graphics import Color, Ellipse
+import numpy as np
 
 colors = [
     (181 / 255, 209 / 255, 100 / 255, 1),
@@ -11,10 +12,11 @@ colors = [
 
 
 class Tile(Ellipse):
-    def __init__(self):
+    def __init__(self,index):
         super().__init__(angle_start=30, angle_end=390, segments=6, pos=(0, 0), size=(0, 0))
         self.depth = 0
         self.color = Color(rgba=(181 / 255, 209 / 255, 100 / 255, 1))
+        self.index = index
 
         pass
 
@@ -24,4 +26,26 @@ class Tile(Ellipse):
         else:
             self.depth = depth
             self.color.rgba = colors[depth]
+  
+    def center(self):
+        return self.pos[0]+self.size[0]/2,self.pos[1]+self.size[1]/2
 
+    def contains(self,point):
+        return util_euk(self.center(),point) <= self.size[0]/2
+
+def util_euk(pos1,pos2):
+    return np.sqrt((pos1[0]-pos2[0])*(pos1[0]-pos2[0])+(pos1[1]-pos2[1])*(pos1[1]-pos2[1]))
+
+def util_get_closest_tile(tiles,pos):
+    if len(tiles) == 0 :
+        return None
+    min_dist = util_euk(tiles[0].pos,pos)
+    min_tile = tiles[0]
+
+    for tile in tiles:
+        dist = util_euk(tile.pos,pos)
+        if dist < min_dist:
+            min_dist = dist
+            min_tile = tile
+
+    return min_tile
