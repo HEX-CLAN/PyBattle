@@ -1,7 +1,7 @@
 from kivy.uix.screenmanager import Screen
 from kivy.core.window import Window
 import numpy
-from utils.tile import util_get_closest_tile,util_get_angle
+from utils.tile import util_get_closest_tile
 from utils import generator
 
 
