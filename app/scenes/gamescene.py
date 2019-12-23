@@ -1,14 +1,14 @@
 from kivy.uix.screenmanager import Screen
 from kivy.core.window import Window
 import numpy
-from utils.tile import util_get_closest_tile
+from utils.tile import util_get_closest_tile,util_get_angle
 from utils import generator
 
 
 class GameScene(Screen):
 
     def create_grid(self):
-        self.hex_grid_size = (30,20)
+        self.hex_grid_size = (2,2)
         self.pt_grid_size = (self.hex_grid_size[0] * 3 + 1, self.hex_grid_size[1] * 2 + 1)
         self.grid_ratio = (self.pt_grid_size[0] / 2, self.pt_grid_size[1] / 2 *  numpy.sqrt(3))
 
@@ -62,6 +62,6 @@ class GameScene(Screen):
 
         tile = util_get_closest_tile(tiles,position)
         if(tile != None):
-            print(tile.index)
+            print(f"{tile.index} {tile.get_side(position)}")
         else:
             print("Poza")

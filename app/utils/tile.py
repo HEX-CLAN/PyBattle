@@ -33,6 +33,23 @@ class Tile(Ellipse):
     def contains(self,point):
         return util_euk(self.center(),point) <= self.size[0]/2
 
+    def get_side(self,point):
+        angle = util_get_angle(self.center(),point)
+
+        if angle >=0 and angle < np.pi/3:
+            return 1
+        elif angle >= np.pi/3 and angle < 2*np.pi/3:
+            return 2
+        elif angle >= 2*np.pi/3:
+            return 3
+        elif angle < 0 and angle >= -np.pi/3:
+            return 6
+        elif angle < -np.pi/3 and angle >= -2*np.pi/3:
+            return 5
+        else:
+            return 4
+
+
 def util_euk(pos1,pos2):
     return np.sqrt((pos1[0]-pos2[0])*(pos1[0]-pos2[0])+(pos1[1]-pos2[1])*(pos1[1]-pos2[1]))
 
@@ -49,3 +66,13 @@ def util_get_closest_tile(tiles,pos):
             min_tile = tile
 
     return min_tile
+
+def util_get_angle(pos1,pos2):
+    tan = (pos2[1]-pos1[1])/(pos2[0]-pos1[0])
+    if pos2[0]>pos1[0]:
+        return np.arctan(tan)
+    else:
+        if pos2[1]>pos1[1]:
+            return np.pi + np.arctan(tan)
+        else:
+            return -np.pi + np.arctan(tan)
