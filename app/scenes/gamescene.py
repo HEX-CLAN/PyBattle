@@ -1,10 +1,7 @@
 from kivy.uix.screenmanager import Screen
 from kivy.core.window import Window
-from kivy.graphics import *
 import numpy
-import math
 from utils.tile import util_get_closest_tile
-
 from utils import generator
 
 
@@ -13,7 +10,7 @@ class GameScene(Screen):
     def create_grid(self):
         self.hex_grid_size = (30,20)
         self.pt_grid_size = (self.hex_grid_size[0] * 3 + 1, self.hex_grid_size[1] * 2 + 1)
-        self.grid_ratio = (self.pt_grid_size[0] / 2, self.pt_grid_size[1] / 2 * math.sqrt(3))
+        self.grid_ratio = (self.pt_grid_size[0] / 2, self.pt_grid_size[1] / 2 *  numpy.sqrt(3))
 
         self.grid = generator.generate_map(
                         width = self.hex_grid_size[0],
@@ -31,10 +28,10 @@ class GameScene(Screen):
     def recalculate(self):
         if self.width / self.grid_ratio[0] > self.height / self.grid_ratio[1]:
             self.unit_h = self.height // self.pt_grid_size[1]
-            self.unit_w = int(self.unit_h // math.sqrt(3))
+            self.unit_w = int(self.unit_h // numpy.sqrt(3))
         else:
             self.unit_w = self.width // self.pt_grid_size[0]
-            self.unit_h = int(self.unit_w * math.sqrt(3))+ 1
+            self.unit_h = int(self.unit_w * numpy.sqrt(3))+ 1
 
         self.padding = ((self.width - self.pt_grid_size[0] * self.unit_w) / 2,
                         (self.height - self.pt_grid_size[1] * self.unit_h) / 2)
