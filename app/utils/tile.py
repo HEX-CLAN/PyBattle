@@ -16,14 +16,17 @@ class Tile(Ellipse):
         super().__init__(angle_start=30, angle_end=390, segments=6, pos=(0, 0), size=(0, 0))
         self.depth = 0 # 0-5
         self.color = Color(181 / 255, 209 / 255, 100 / 255, 1)
-        self.index = index
-        self.center = (0,0)
+        self.index = index # position on grid
+        self.center = (0,0) # position of Tile center in pixels
 
-        self.line_color = [Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 0),
-            Color(0, 0, 0, 0), Color(0, 0, 0, 0)]
-        self.line = [Line(width=2),Line(width=2),Line(width=2),Line(width=2),Line(width=2),Line(width=2)]
-
-
+        self.nearby = [
+            {'line': Line(width=2), 'line_color': Color(0, 0, 0, 0), 'tile_index': [index[0] + 1, int(index[1]) + int(index[1]) % 2] },
+            {'line': Line(width=2), 'line_color': Color(0, 0, 0, 0), 'tile_index': (index[0], index[1] + 1) },
+            {'line': Line(width=2), 'line_color': Color(0, 0, 0, 0), 'tile_index': (index[0] - 1, index[1] + index[1] % 2) },
+            {'line': Line(width=2), 'line_color': Color(0, 0, 0, 0), 'tile_index': (index[0] - 1, index[1] - 1 + index[1] % 2)},
+            {'line': Line(width=2), 'line_color': Color(0, 0, 0, 0), 'tile_index': (index[0], index[1] - 1) },
+            {'line': Line(width=2), 'line_color': Color(0, 0, 0, 0), 'tile_index': (index[0] + 1, index[1] - 1 + index[1] % 2)},
+        ]
 
     def set_depth(self, depth):
         if depth < 0 or depth > 5:
@@ -32,23 +35,24 @@ class Tile(Ellipse):
             self.depth = depth
             self.color.rgba = colors[depth]
 
-    def update_geometry(self, pos, size):
+    def set_pos_and_size(self, pos, size):
         self.pos = pos
         self.size = size
         self.center = (pos[0] + size[0] / 2, pos[1] + size[1] / 2)
 
-        self.line[0].points = [self.center[0], self.center[1], self.center[0]+34, self.center[1]+20]
-        self.line[5].points = [self.center[0], self.center[1], self.center[0]+34, self.center[1]-20]
-        self.line[4].points = [self.center[0], self.center[1], self.center[0], self.center[1]-40]
-        self.line[3].points = [self.center[0], self.center[1], self.center[0]-34, self.center[1]-20]
-        self.line[2].points = [self.center[0], self.center[1], self.center[0]-34, self.center[1]+20]
-        self.line[1].points = [self.center[0], self.center[1], self.center[0], self.center[1]+40]
+        # Te wartosci powinny byc obliczane a nie ustawiane na sztywno
+        self.nearby[0]['line'].points = [self.center[0], self.center[1], self.center[0]+34, self.center[1]+20]
+        self.nearby[1]['line'].points = [self.center[0], self.center[1], self.center[0], self.center[1]+40]
+        self.nearby[2]['line'].points = [self.center[0], self.center[1], self.center[0]-34, self.center[1]+20]
+        self.nearby[3]['line'].points = [self.center[0], self.center[1], self.center[0]-34, self.center[1]-20]
+        self.nearby[4]['line'].points = [self.center[0], self.center[1], self.center[0], self.center[1]-40]
+        self.nearby[5]['line'].points = [self.center[0], self.center[1], self.center[0]+34, self.center[1]-20]
 
     def activate_line(self, id):
-        if self.line_color[id-1].a == 0:
-            self.line_color[id-1].a = 1
+        if self.nearby[id]['line_color'].a == 0:
+            self.nearby[id]['line_color'].a = 1
         else:
-            self.line_color[id-1].a = 0
+            self.nearby[id]['line_color'].a = 0
 
     def contains(self,point):
         return util_euk(self.center, point) <= self.size[0] / 2
@@ -57,17 +61,17 @@ class Tile(Ellipse):
         angle = util_get_angle(self.center, point)
 
         if angle >=0 and angle < np.pi/3:
-            return 1
+            return 0
         elif angle >= np.pi/3 and angle < 2*np.pi/3:
-            return 2
+            return 1
         elif angle >= 2*np.pi/3:
-            return 3
+            return 2
         elif angle < 0 and angle >= -np.pi/3:
-            return 6
-        elif angle < -np.pi/3 and angle >= -2*np.pi/3:
             return 5
-        else:
+        elif angle < -np.pi/3 and angle >= -2*np.pi/3:
             return 4
+        else:
+            return 3
 
 
 def util_euk(pos1,pos2):

@@ -37,7 +37,7 @@ def generate_map(width, height, seed, water, max_diff):
         for y in range(height):
             grid[x][y] = tile.Tile((x,y))
 
-    for r in range(water):
+    for r in range(int(water)):
         x = random.randrange(0, width)
         y = random.randrange(0, height)
         set_value(grid, 5, x, y, width, height, max_diff)
@@ -47,6 +47,10 @@ def generate_map(width, height, seed, water, max_diff):
         x = random.randrange(0, width)
         y = random.randrange(0, height)
         set_value(grid, 2, x, y, width, height, max_diff)
+
+
+    # losowanie startowych pozycji graczy
+
     return grid
 
 

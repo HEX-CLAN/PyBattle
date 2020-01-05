@@ -23,13 +23,13 @@ class GameSettingsScene(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
         self.game_data = {
-            'water_level': 10,  # (ak) TODO: ustawić domyślną ilość wody
-            'player_color': 'red', # (wszyscy) TODO: ustawić domyślny kolor gracza
-            'amount_of_players': 2, # (ak) TODO: ustawić domyślną ilość graczy
-            'map_width': 30, # (ak) TODO: ustawić domyślną wysokość planszy
-            'map_height': 20,  # (ak) TODO: ustawić domyślną szerokość planszy
-            'game_speed': 1, # (ak) TODO: ustawić domyślną szybkość gry
-            'enemies_speed': 1 # (ak) TODO: ustawić domyślną szybkość przeciwników
+            'water_level': 10,
+            'player_color': 'red',
+            'amount_of_players': 2,
+            'map_width': 30,
+            'map_height': 20,
+            'game_speed': 1,
+            'enemies_speed': 1
         }
         if os.path.isfile('data/game.npy'):
             self.read_game_settings_data()

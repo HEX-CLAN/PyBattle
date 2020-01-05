@@ -10,7 +10,7 @@ from kivy.graphics import Color
 class GameScene(Screen):
 
     def create_grid(self):
-        self.hex_grid_size = (settings.game_data['map_width'], settings.game_data['map_height'])
+        self.hex_grid_size = (int(settings.game_data['map_width']), int(settings.game_data['map_height']))
         self.pt_grid_size = (self.hex_grid_size[0] * 3 + 1, self.hex_grid_size[1] * 2 + 1)
         self.grid_ratio = (self.pt_grid_size[0] / 2, self.pt_grid_size[1] / 2 *  numpy.sqrt(3))
 
@@ -27,8 +27,8 @@ class GameScene(Screen):
                 self.canvas.add(self.grid[x][y].color)
                 self.canvas.add(self.grid[x][y])
                 for l in range(6):
-                    self.canvas.add(self.grid[x][y].line_color[l])
-                    self.canvas.add(self.grid[x][y].line[l])
+                    self.canvas.add(self.grid[x][y].nearby[l]['line_color'])
+                    self.canvas.add(self.grid[x][y].nearby[l]['line'])
 
     def recalculate(self):
         if self.width / self.grid_ratio[0] > self.height / self.grid_ratio[1]:
@@ -45,7 +45,7 @@ class GameScene(Screen):
             x = 3 * self.unit_w * column + self.padding[0]
             for row in range(self.hex_grid_size[1]):
                 y = self.unit_h * 2 * row + self.unit_h * ((column+1) % 2) + self.unit_h - self.unit_w * 2 + self.padding[1]
-                self.grid[column][row].update_geometry(pos = (x, y), size = (self.unit_w * 4 - 2, self.unit_w * 4 - 2))
+                self.grid[column][row].set_pos_and_size(pos = (x, y), size = (self.unit_w * 4 - 2, self.unit_w * 4 - 2))
 
 
     def on_enter(self):
