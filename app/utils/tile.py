@@ -19,6 +19,7 @@ class Tile(Ellipse):
         self.index = index # position on grid
         self.center = (0,0) # position of Tile center in pixels
 
+        # TODO: nie każde pole potrzebuje znać sąsiadów i zawierać obiekty Line: np woda. trzeba to ogarnąć np w generatorze
         self.nearby = [
             {'line': Line(width=2), 'line_color': Color(0, 0, 0, 0), 'tile_index': [index[0] + 1, int(index[1]) + int(index[1]) % 2] },
             {'line': Line(width=2), 'line_color': Color(0, 0, 0, 0), 'tile_index': (index[0], index[1] + 1) },
@@ -27,6 +28,10 @@ class Tile(Ellipse):
             {'line': Line(width=2), 'line_color': Color(0, 0, 0, 0), 'tile_index': (index[0], index[1] - 1) },
             {'line': Line(width=2), 'line_color': Color(0, 0, 0, 0), 'tile_index': (index[0] + 1, index[1] - 1 + index[1] % 2)},
         ]
+
+        # TODO: to będzie kółko w środku Tila, które będzie rosnąć (lub nie będzie istnieć... trzeba to obmyśleć)
+        # self.value_color = Color
+        # self.value_circle = Ellipse
 
     def set_depth(self, depth):
         if depth < 0 or depth > 5:

@@ -1,17 +1,6 @@
 import random
-
 from utils import tile
-# SETUP
 
-# seed = 42352336
-# width = 30
-# height = 20
-# water = 10 # min, max
-
-# INIT
-
-# random.seed(a=seed, version=2)
-# map = [[0] * height for i in range(width)]
 
 # RANDOM GENERATOR
 def set_value(map, value, x, y, width, height, max_diff):
@@ -27,7 +16,6 @@ def set_value(map, value, x, y, width, height, max_diff):
                 if v < 0: 
                     v = 0
                 set_value(map, v, n[0], n[1], width, height, max_diff)
-
 
 def generate_map(width, height, seed, water, max_diff):
     random.seed(a=seed, version=2)
@@ -47,19 +35,14 @@ def generate_map(width, height, seed, water, max_diff):
         x = random.randrange(0, width)
         y = random.randrange(0, height)
         set_value(grid, 2, x, y, width, height, max_diff)
-
-
-    # losowanie startowych pozycji graczy
-
     return grid
 
+def get_startpoint(map, width, height):
+    x = random.randrange(0, width)
+    y = random.randrange(0, height)
 
-# PRINT
+    while map[x][y].depth != 0:
+        x = random.randrange(0, width)
+        y = random.randrange(0, height)
 
-# for a in range(40):
-#     for b in range(15):
-#         if a%2 == 0:
-#             print(map[b*2][a//2], "    ", end='')
-#         else:
-#             print("   "+str(map[b*2+1][a//2])+"  ", end='')
-#     print()
+    return (x, y)
