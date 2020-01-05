@@ -13,14 +13,12 @@ class AppSettingsScene(Screen):
     MAX_WINDOW_WIDTH = 1920
     MIN_WINDOW_HEIGHT = 768
     MAX_WINDOW_HEIGHT = 1080
-    FULLSCREEN = False # (c) TODO: zaimplementować opcję zmiany na fullscreen
 
     def __init__(self, **kw):
         super().__init__(**kw)
         self.app_data = {
             'width': self.MIN_WINDOW_WIDTH,
-            'height': self.MIN_WINDOW_HEIGHT,
-            'fullscreen': self.FULLSCREEN
+            'height': self.MIN_WINDOW_HEIGHT
         }
         if os.path.isfile('data/app.npy'):
             self.read_app_settings_data()
