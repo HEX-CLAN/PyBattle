@@ -3,12 +3,14 @@ from kivy.core.window import Window
 import numpy
 from utils.tile import util_get_closest_tile
 from utils import generator
+from utils import settings
+from kivy.graphics import Color
 
 
 class GameScene(Screen):
 
     def create_grid(self):
-        self.hex_grid_size = (2,2)
+        self.hex_grid_size = (settings.game_data['map_width'], settings.game_data['map_height'])
         self.pt_grid_size = (self.hex_grid_size[0] * 3 + 1, self.hex_grid_size[1] * 2 + 1)
         self.grid_ratio = (self.pt_grid_size[0] / 2, self.pt_grid_size[1] / 2 *  numpy.sqrt(3))
 
@@ -16,7 +18,7 @@ class GameScene(Screen):
                         width = self.hex_grid_size[0],
                         height = self.hex_grid_size[1],
                         seed = 42352336,
-                        water = 10,
+                        water = settings.game_data['water_level'],
                         max_diff = 1
                     )
 
@@ -24,6 +26,9 @@ class GameScene(Screen):
             for y in range(self.hex_grid_size[1]):
                 self.canvas.add(self.grid[x][y].color)
                 self.canvas.add(self.grid[x][y])
+                for l in range(6):
+                    self.canvas.add(self.grid[x][y].line_color[l])
+                    self.canvas.add(self.grid[x][y].line[l])
 
     def recalculate(self):
         if self.width / self.grid_ratio[0] > self.height / self.grid_ratio[1]:
@@ -40,8 +45,8 @@ class GameScene(Screen):
             x = 3 * self.unit_w * column + self.padding[0]
             for row in range(self.hex_grid_size[1]):
                 y = self.unit_h * 2 * row + self.unit_h * ((column+1) % 2) + self.unit_h - self.unit_w * 2 + self.padding[1]
-                self.grid[column][row].pos = (x, y)
-                self.grid[column][row].size = (self.unit_w * 4 - 2, self.unit_w * 4 - 2)
+                self.grid[column][row].update_geometry(pos = (x, y), size = (self.unit_w * 4 - 2, self.unit_w * 4 - 2))
+
 
     def on_enter(self):
         self.create_grid()
@@ -62,6 +67,8 @@ class GameScene(Screen):
 
         tile = util_get_closest_tile(tiles,position)
         if(tile != None):
-            print(f"{tile.index} {tile.get_side(position)}")
+            side = tile.get_side(position)
+            print(f"{tile.index} {side}")
+            tile.activate_line(side)
         else:
             print("Poza")
