@@ -28,11 +28,11 @@ class GameScene(Screen):
     def create_grid(self):
         for x in range(self.hex_grid_size[0]):
             for y in range(self.hex_grid_size[1]):
-                self.canvas.add(self.grid[x][y].color)
+                #self.canvas.add(self.grid[x][y].color)
                 self.canvas.add(self.grid[x][y])
-                for l in range(6):
-                    self.canvas.add(self.grid[x][y].nearby_tiles[l]['line_color'])
-                    self.canvas.add(self.grid[x][y].nearby_tiles[l]['line'])
+                #for l in range(6):
+                    #self.canvas.add(self.grid[x][y].nearby_tiles[l]['line_color'])
+                    #self.canvas.add(self.grid[x][y].nearby_tiles[l]['line'])
 
     def recalculate(self):
         if self.window_is_with_vertical_padding():
@@ -66,7 +66,7 @@ class GameScene(Screen):
         tile = util_get_closest_tile(tiles, position)
         if tile is not None:
             side = tile.get_side(position)
-            print(f"{tile.pos_on_grid} {side}")
+            print(f"{tile.grid_pos} {side}")
             tile.activate_line(side)
         else:
             print("Poza")
