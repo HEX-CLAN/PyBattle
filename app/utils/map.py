@@ -1,17 +1,17 @@
-from utils import generator
-from utils import settings
 import numpy
 from kivy.graphics.instructions import Canvas
+from utils import generator
+from utils import settings
 from utils.tile import util_get_closest_tile
 
 
 class Map:
-    def __init__(self, width, height, seed, water, max_diff):
-        self.width = width # grid dimensions 
-        self.height = height
-        self.seed = seed
-        self.water = water
-        self.max_diff = max_diff
+    def __init__(self):
+        self.width = int(settings.game_data['map_width'])
+        self.height = int(settings.game_data['map_height'])
+        self.seed = 42352336
+        self.water = int(settings.game_data['water_level'])
+        self.max_diff = 1
 
         self.canvas = Canvas()
 
