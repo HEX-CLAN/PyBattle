@@ -25,6 +25,9 @@ class Tile(Canvas):
         self.pixel_pos = (0, 0)
 
         self.depth = 0  # 0-5
+        self.base = False
+        self.player = None
+        self.value = 0
 
         self.nearby_tiles = [
             {'grid_pos': [grid_pos[0] + 1, int(grid_pos[1]) + int(grid_pos[1]) % 2]},
@@ -43,6 +46,9 @@ class Tile(Canvas):
         self.player_color = None
         self.player_circle = None
 
+        self.base_color = None
+        self.base_circle = None
+
         self.lines = [
             {'line': None, 'line_color': None},
             {'line': None, 'line_color': None},
@@ -57,6 +63,22 @@ class Tile(Canvas):
         self.add(self.hexagon_color)
         self.add(self.hexagon)
 
+    def set_player(self, player):
+        self.player = player
+        # tu powinno byc tworzenie koła gracza
+
+    def set_base(self):
+        # tu powinno byc tworzenie ramki bazy
+        pass
+
+    def add_value(self, value=0):
+        if value <= 0:
+            if self.base:
+                self.value += 6
+            else:
+                self.value += 2
+        else:
+            self.value += value
 
     def set_depth(self, depth):
         self.depth = depth

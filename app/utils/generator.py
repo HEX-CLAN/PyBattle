@@ -36,13 +36,3 @@ def generate_map(width, height, seed, water, max_diff):
         y = random.randrange(0, height)
         set_value(grid, 2, x, y, width, height, max_diff)
     return grid
-
-def get_startpoint(map, width, height):
-    x = random.randrange(0, width)
-    y = random.randrange(0, height)
-
-    while map[x][y].depth != 0:
-        x = random.randrange(0, width)
-        y = random.randrange(0, height)
-
-    return (x, y)

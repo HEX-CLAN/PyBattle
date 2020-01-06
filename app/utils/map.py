@@ -1,4 +1,5 @@
 import numpy
+import random
 from kivy.graphics.instructions import Canvas
 from utils import generator
 from utils import settings
@@ -72,4 +73,14 @@ class Map:
             tile.activate_line(side)
         else:
             print("Poza")
+
+    def random_free_tile(self):
+        x = random.randrange(0, self.width)
+        y = random.randrange(0, self.height)
+
+        while self.tile[x][y].depth != 0:
+            x = random.randrange(0, self.width)
+            y = random.randrange(0, self.height)
+
+        return self.tile[x][y]
 
