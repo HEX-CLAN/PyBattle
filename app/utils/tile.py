@@ -24,18 +24,21 @@ class Tile(Canvas):
         self.center_pos = (0, 0)
         self.pixel_pos = (0, 0)
 
+        self.map = None
+        self.player = None
+
         self.depth = 0  # 0-5
         self.base = False
-        self.player = None
         self.value = 0
+        self.change = 0 # added to value in every game step
 
         self.nearby_tiles = [
-            {'grid_pos': [grid_pos[0] + 1, int(grid_pos[1]) + int(grid_pos[1]) % 2]},
-            {'grid_pos': (grid_pos[0], grid_pos[1] + 1)},
-            {'grid_pos': (grid_pos[0] - 1, grid_pos[1] + grid_pos[1] % 2)},
-            {'grid_pos': (grid_pos[0] - 1, grid_pos[1] - 1 + grid_pos[1] % 2)},
-            {'grid_pos': (grid_pos[0], grid_pos[1] - 1)},
-            {'grid_pos': (grid_pos[0] + 1, grid_pos[1] - 1 + grid_pos[1] % 2)},
+            {'x': grid_pos[0] + 1, 'y': int(grid_pos[1]) + int(grid_pos[1]) % 2},
+            {'x': grid_pos[0], 'y': grid_pos[1] + 1},
+            {'x': grid_pos[0] - 1, 'y': grid_pos[1] + grid_pos[1] % 2},
+            {'x': grid_pos[0] - 1, 'y': grid_pos[1] - 1 + grid_pos[1] % 2},
+            {'x': grid_pos[0], 'y': grid_pos[1] - 1},
+            {'x': grid_pos[0] + 1, 'y': grid_pos[1] - 1 + grid_pos[1] % 2},
         ]
 
         # ELEMENTS
@@ -50,12 +53,12 @@ class Tile(Canvas):
         self.base_circle = None
 
         self.lines = [
-            {'line': None, 'line_color': None},
-            {'line': None, 'line_color': None},
-            {'line': None, 'line_color': None},
-            {'line': None, 'line_color': None},
-            {'line': None, 'line_color': None},
-            {'line': None, 'line_color': None}
+            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 34, 'b': 20}, # a i b sa tymczasowe
+            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 0, 'b': 40},
+            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': -34, 'b': 20},
+            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': -34, 'b': -20},
+            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 0, 'b': -40},
+            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 34, 'b': -20},
         ]
 
         # DRAW
@@ -71,6 +74,7 @@ class Tile(Canvas):
 
         self.add(self.player_color)
         self.add(self.player_circle)
+        self.change += 2 # total 2 passive increase
 
 
     def set_base(self, val):
@@ -78,14 +82,12 @@ class Tile(Canvas):
         self.base_circle = Line(width=1.5, circle=(self.center_pos[0], self.center_pos[1], self.hexagon.size[0] * 0.3))
         self.add(self.base_color)
         self.add(self.base_circle)
+        self.change += 4 # total 6 passive increase
 
 
-    def add_value(self, value=0):
-        if value <= 0:
-            if self.base:
-                self.value += 6
-            else:
-                self.value += 2
+    def add_value(self, value=None):
+        if value is None:
+            self.value += self.change
         else:
             self.value += value
 
@@ -93,11 +95,10 @@ class Tile(Canvas):
             self.value = 100
 
         value_pixels = self.hexagon.size[0] * 0.006 * self.value
-
         self.player_circle.size = (value_pixels, value_pixels)
         self.player_circle.pos = (self.center_pos[0] - value_pixels / 2, self.center_pos[1] - value_pixels / 2)
-
-        self.base_circle.circle=(self.center_pos[0], self.center_pos[1], self.hexagon.size[0] * 0.34)
+        if self.base_circle is not None:
+            self.base_circle.circle=(self.center_pos[0], self.center_pos[1], self.hexagon.size[0] * 0.34)
 
     def set_depth(self, depth):
         self.depth = depth
@@ -116,12 +117,28 @@ class Tile(Canvas):
         # self.lines[4]['line'].points = [self.center_pos[0], self.center_pos[1], self.center_pos[0], self.center_pos[1] - 40]
         # self.lines[5]['line'].points = [self.center_pos[0], self.center_pos[1], self.center_pos[0] + 34, self.center_pos[1] - 20]
 
-    def activate_line(self, id):
-        if self.lines[id]['line_color'] != None:
-            if self.lines[id]['line_color'].a == 0:
-                self.lines[id]['line_color'].a = 1
-            else:
-                self.lines[id]['line_color'].a = 0
+    def change_line(self, player, side):
+
+        if self.lines[side]['line'] is None:
+            self.lines[side]['line_color'] = Color(0, 0, 0, 1)
+            self.lines[side]['line'] = Line(width=1.5, points=[self.center_pos[0], self.center_pos[1],
+                self.center_pos[0]+self.lines[side]['a'], self.center_pos[1]+self.lines[side]['b']])
+            self.add(self.lines[side]['line_color'])
+            self.add(self.lines[side]['line'])
+
+            near_tile = self.map.tile[self.nearby_tiles[side]['x']][self.nearby_tiles[side]['y']]
+            if near_tile.player is None:
+                near_tile.set_player(player)
+                player.tiles.append(near_tile)
+                #near_tile.add_value(0)
+
+        else:
+            self.remove(self.lines[side]['line'])
+            self.remove(self.lines[side]['line_color'])
+            self.lines[side]['line_color'] = None
+            self.lines[side]['line'] = None
+
+
 
     def contains(self, point):
         return util_distance_between_points(self.center_pos, point) <= self.hexagon.size[0] / 2

@@ -4,6 +4,7 @@ from utils.map import Map
 from utils import settings
 from utils.player import Player
 from kivy.clock import Clock
+from utils.map import util_get_closest_tile
 
 
 class GameScene(Screen):
@@ -37,5 +38,22 @@ class GameScene(Screen):
         Clock.schedule_interval(self.on_update, 0.1)
 
     def on_touch_down(self, touch):
-        self.map.click(position = (touch.x, touch.y))
+        position = (touch.x, touch.y)
+        tiles = []
+        for x in range(self.map.width):
+            for y in range(self.map.height):
+                if self.map.tile[x][y].contains(position):
+                    tiles.append(self.map.tile[x][y])
+
+        tile = util_get_closest_tile(tiles, position)
+        if tile is not None:
+            side = tile.get_side(position)
+            print(f"{tile.grid_pos} {side}")
+            if tile in self.main_player.tiles:
+                tile.change_line(self.main_player, side)
+                print("TAK! TWOJE!")
+            #tile.activate_line(side)
+        else:
+            print("Poza")
+
 

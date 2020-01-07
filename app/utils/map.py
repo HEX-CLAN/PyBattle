@@ -26,6 +26,7 @@ class Map:
 
         for x in range(self.width):
             for y in range(self.height):
+                self.tile[x][y].map = self
                 self.canvas.add(self.tile[x][y])
 
         # real pixel dimensions
