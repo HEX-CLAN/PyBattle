@@ -133,11 +133,18 @@ def util_get_closest_tile(tiles, pos):
 
 
 def util_get_angle(pos1, pos2):
-    tan = (pos2[1] - pos1[1]) / (pos2[0] - pos1[0])
-    if pos2[0] > pos1[0]:
-        return np.arctan(tan)
+    if pos2[0] == pos1[0] and pos2[1] > pos1[1]:
+        return np.pi/2
+    elif pos2[0] == pos1[0] and pos2[1] < pos1[1]:
+        return -np.pi/2
+    elif pos2[0] == pos1[0] and pos2[1] == pos1[1]:
+        return 0.0
     else:
-        if pos2[1] > pos1[1]:
-            return np.pi + np.arctan(tan)
+        tan = (pos2[1] - pos1[1]) / (pos2[0] - pos1[0])
+        if pos2[0] > pos1[0]:
+            return np.arctan(tan)
         else:
-            return -np.pi + np.arctan(tan)
+            if pos2[1] > pos1[1]:
+                return np.pi + np.arctan(tan)
+            else:
+                return -np.pi + np.arctan(tan)
