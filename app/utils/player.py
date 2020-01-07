@@ -31,8 +31,8 @@ class Player:
 
         # 1. obliczenie gdzie ile dodac punktow
 
-        for t in tiles:
-            t.add_value() # auto value
+        # for t in tiles:
+        #     t.add_value() # auto value
 
 
 
