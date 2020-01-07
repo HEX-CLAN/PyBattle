@@ -34,7 +34,7 @@ class GameScene(Screen):
 
     def on_enter(self):
         self.map.update_canvas(x=0, y=0, w = self.width, h = self.height)
-        Clock.schedule_interval(self.on_update, 1)
+        Clock.schedule_interval(self.on_update, 0.1)
 
     def on_touch_down(self, touch):
         self.map.click(position = (touch.x, touch.y))

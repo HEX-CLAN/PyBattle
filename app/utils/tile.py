@@ -65,11 +65,20 @@ class Tile(Canvas):
 
     def set_player(self, player):
         self.player = player
-        # tu powinno byc tworzenie koła gracza
 
-    def set_base(self):
-        # tu powinno byc tworzenie ramki bazy
-        pass
+        self.player_color = player.color
+        self.player_circle = Ellipse(size=(50,50), pos=self.pixel_pos)
+
+        self.add(self.player_color)
+        self.add(self.player_circle)
+
+
+    def set_base(self, val):
+        self.base_color = Color(0, 0, 0, 1)
+        self.base_circle = Line(width=1.5, circle=(self.center_pos[0], self.center_pos[1], self.hexagon.size[0] * 0.3))
+        self.add(self.base_color)
+        self.add(self.base_circle)
+
 
     def add_value(self, value=0):
         if value <= 0:
@@ -79,6 +88,16 @@ class Tile(Canvas):
                 self.value += 2
         else:
             self.value += value
+
+        if self.value > 100:
+            self.value = 100
+
+        value_pixels = self.hexagon.size[0] * 0.006 * self.value
+
+        self.player_circle.size = (value_pixels, value_pixels)
+        self.player_circle.pos = (self.center_pos[0] - value_pixels / 2, self.center_pos[1] - value_pixels / 2)
+
+        self.base_circle.circle=(self.center_pos[0], self.center_pos[1], self.hexagon.size[0] * 0.34)
 
     def set_depth(self, depth):
         self.depth = depth
