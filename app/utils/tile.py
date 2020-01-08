@@ -33,12 +33,12 @@ class Tile(Canvas):
         self.change = 0 # added to value in every game step
 
         self.nearby_tiles = [
-            {'x': grid_pos[0] + 1, 'y': int(grid_pos[1]) + int(grid_pos[1]) % 2},
+            {'x': grid_pos[0] + 1, 'y': grid_pos[1] + 1 - grid_pos[0] % 2}, # prawa gora
             {'x': grid_pos[0], 'y': grid_pos[1] + 1},
-            {'x': grid_pos[0] - 1, 'y': grid_pos[1] + grid_pos[1] % 2},
-            {'x': grid_pos[0] - 1, 'y': grid_pos[1] - 1 + grid_pos[1] % 2},
+            {'x': grid_pos[0] - 1, 'y': grid_pos[1] + 1 - grid_pos[0] % 2}, # lewa gora
+            {'x': grid_pos[0] - 1, 'y': grid_pos[1] + 0 - grid_pos[0] % 2}, # lewy dol
             {'x': grid_pos[0], 'y': grid_pos[1] - 1},
-            {'x': grid_pos[0] + 1, 'y': grid_pos[1] - 1 + grid_pos[1] % 2},
+            {'x': grid_pos[0] + 1, 'y': grid_pos[1] + 0 - grid_pos[0] % 2}, # prawy dol
         ]
 
         # ELEMENTS
