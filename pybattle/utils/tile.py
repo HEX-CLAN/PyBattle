@@ -65,7 +65,7 @@ class Tile(Canvas):
         self.player = player
 
         self.player_color = player.color
-        self.player_circle = Ellipse(size=(50,50), pos=self.pixel_pos)
+        self.player_circle = Ellipse(size=(0, 0), pos=self.pixel_pos)
 
         self.add(self.player_color)
         self.add(self.player_circle)

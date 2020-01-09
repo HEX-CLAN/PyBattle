@@ -29,21 +29,21 @@ class SettingsGame(Screen):
             'game_speed': 1,
             'enemies_speed': 1
         }
-        if os.path.isfile('data/game.npy'):
+        if os.path.isfile('pybattle/data/game.npy'):
             self.read_game_settings_data()
             self.update()
         else:
             self.create_game_file()
 
     def create_game_file(self):
-        if not os.path.isdir('data'):
-            os.mkdir('data')
-        f = open('data/game.npy', 'w+')
+        if not os.path.isdir('pybattle/data'):
+            os.mkdir('pybattle/data')
+        f = open('pybattle/data/game.npy', 'w+')
         f.close()
-        numpy.save('data/game.npy', self.game_data)
+        numpy.save('pybattle/data/game.npy', self.game_data)
 
     def read_game_settings_data(self):
-        self.game_data = numpy.load('data/game.npy', allow_pickle=True).item()
+        self.game_data = numpy.load('pybattle/data/game.npy', allow_pickle=True).item()
 
     def get_new_data_and_save(self, new_water_level, new_player_color, new_amount_of_players, new_map_width,
                               new_map_height, new_game_speed, new_enemies_speed):
@@ -60,4 +60,4 @@ class SettingsGame(Screen):
         settings.game_data = self.game_data
 
     def save_to_file(self):
-        numpy.save('data/game.npy', self.game_data)
+        numpy.save('pybattle/data/game.npy', self.game_data)

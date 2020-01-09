@@ -20,7 +20,7 @@ class SettingsApp(Screen):
             'height': self.MIN_WINDOW_HEIGHT,
             'fullscreen': self.FULLSCREEN
         }
-        if os.path.isfile('data/pybattle.npy'):
+        if os.path.isfile('pybattle/data/app.npy'):
             self.read_app_settings_data()
             self.update()
         else:
@@ -32,12 +32,12 @@ class SettingsApp(Screen):
         Config.set('graphics', 'height', self.MIN_WINDOW_HEIGHT)
 
     def create_user_file(self):
-        f = open('data/pybattle.npy', 'w+')
+        f = open('pybattle/data/app.npy', 'w+')
         f.close()
-        numpy.save('data/pybattle.npy', self.app_data)
+        numpy.save('pybattle/data/app.npy', self.app_data)
 
     def read_app_settings_data(self):
-        self.app_data = numpy.load('data/pybattle.npy', allow_pickle=True).item()
+        self.app_data = numpy.load('pybattle/data/app.npy', allow_pickle=True).item()
 
     def get_new_data_and_save(self, new_width, new_height):
         self.app_data['width'] = new_width
@@ -50,4 +50,4 @@ class SettingsApp(Screen):
         settings.app_data = self.app_data
 
     def save_to_file(self):
-        numpy.save('data/pybattle.npy', self.app_data)
+        numpy.save('pybattle/data/app.npy', self.app_data)
