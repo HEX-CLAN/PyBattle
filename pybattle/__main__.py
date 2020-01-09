@@ -2,6 +2,9 @@ import kivy
 kivy.config.Config.setdefault('graphics', 'resizable', True)
 kivy.config.Config.setdefault('graphics', 'fullscreen', True)
 kivy.config.Config.setdefault('graphics', 'borderless', False)
+kivy.config.Config.set('graphics', 'resizable', True)
+kivy.config.Config.set('graphics', 'fullscreen', True)
+kivy.config.Config.set('graphics', 'borderless', False)
 kivy.config.Config.write()
 from pybattle.run import Run
 
