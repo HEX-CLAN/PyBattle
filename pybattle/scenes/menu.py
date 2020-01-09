@@ -12,7 +12,7 @@ class Menu(Screen):
         self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
         self._keyboard.bind(on_key_down=self._on_keyboard_down)
 
-        self.full = True
+        self.mode = 0
 
         pass
 
@@ -21,14 +21,27 @@ class Menu(Screen):
 
     def _on_keyboard_down(self, keyboard, keycode, text, modifiers):
 
-        if self.full:
-            Window.fullscreen = False
-            self.full = False
-        else:
-            Window.fullscreen = 'auto' # jesli bedzie true to wskoczy w dziwna rozdzielczosc
-            self.full = True
+        if self.mode == 1:
+            Window.fullscreen = True
+            self.mode = 2
+            return
 
-        pass
+        if self.mode == 2:
+            Window.size = (800, 450)
+            self.mode = 3
+            return
+
+        if self.mode == 3:
+            Window.fullscreen = 'auto'
+            self.mode = 0
+            return
+
+        if self.mode == 0:
+            Window.fullscreen = False
+            self.mode = 1
+            return
+
+
 
 
     # def on_touch_down(self, touch):
