@@ -1,10 +1,12 @@
 import os
-import numpy
+
+import numpy as np
 from kivy.uix.screenmanager import Screen
-from pybattle.utils import settings
+
+from utils import settings
 
 
-class SettingsGame(Screen):
+class GameSettingsScene(Screen):
     MIN_WATER_LEVEL = 0
     MAX_WATER_LEVEL = 100
     MIN_AMOUNT_OF_PLAYERS = 2
@@ -21,28 +23,29 @@ class SettingsGame(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
         self.game_data = {
-            'water_level': 8,
-            'player_color': 'red',
-            'amount_of_players': 2,
-            'map_width': 20,
-            'map_height': 20,
-            'game_speed': 1,
-            'enemies_speed': 1
+            'water_level': 0,  # (ak) TODO: ustawić domyślną ilość wody
+            'player_color': 'red', # (wszyscy) TODO: ustawić domyślny kolor gracza
+            'amount_of_players': 2, # (ak) TODO: ustawić domyślną ilość graczy
+            'map_width': 5, # (ak) TODO: ustawić domyślną wysokość planszy
+            'map_height': 5,  # (ak) TODO: ustawić domyślną szerokość planszy
+            'game_speed': 0, # (ak) TODO: ustawić domyślną szybkość gry
+            'enemies_speed': 0 # (ak) TODO: ustawić domyślną szybkość przeciwników
         }
-
-    def on_enter(self):
-        if os.path.isfile('pybattle/data/game.npy'):
-            self.game_data = numpy.load('pybattle/data/game.npy', allow_pickle=True).item()
+        if os.path.isfile('data/game.npy'):
+            self.read_game_settings_data()
             self.update()
         else:
             self.create_game_file()
 
     def create_game_file(self):
-        if not os.path.isdir('pybattle/data'):
-            os.mkdir('pybattle/data')
-        f = open('pybattle/data/game.npy', 'w+')
+        if not os.path.isdir('data'):
+            os.mkdir('data')
+        f = open('data/game.npy', 'w+')
         f.close()
-        numpy.save('pybattle/data/game.npy', self.game_data)
+        np.save('data/game.npy', self.game_data)
+
+    def read_game_settings_data(self):
+        self.game_data = np.load('data/game.npy', allow_pickle=True).item()
 
     def get_new_data_and_save(self, new_water_level, new_player_color, new_amount_of_players, new_map_width,
                               new_map_height, new_game_speed, new_enemies_speed):
@@ -59,4 +62,4 @@ class SettingsGame(Screen):
         settings.game_data = self.game_data
 
     def save_to_file(self):
-        numpy.save('pybattle/data/game.npy', self.game_data)
+        np.save('data/game.npy', self.game_data)
