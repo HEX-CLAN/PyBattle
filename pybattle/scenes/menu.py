@@ -28,11 +28,6 @@ class Menu(Screen):
             return
 
         if self.mode == 2:
-            Window.size = (800, 450)
-            self.mode = 3
-            return
-
-        if self.mode == 3:
             Window.fullscreen = 'auto'
             self.mode = 0
             return
