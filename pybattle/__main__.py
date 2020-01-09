@@ -5,8 +5,7 @@ from kivy import Config
 
 if __name__ == '__main__':
     # Config.set('graphics', 'fullscreen', 'auto')
-    # Config.set('graphics', 'resizable', 1)
-    # Config.write()
+
 
     Config.set('graphics', 'fullscreen', False) # to nadpisuje config, ktory gra wlaczylaby domyslnie
     Config.write()

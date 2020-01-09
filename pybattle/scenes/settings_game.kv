@@ -1,6 +1,6 @@
 #:kivy 1.11.1
-<GameSettingsScene>:
-    name: 'gamesettingsscene'
+<SettingsGame>:
+    name: 'settings_game'
 
     AnchorLayout:
         anchor_x: 'center'
@@ -260,7 +260,7 @@
         on_release:
             self.color = (.1, 1, .8, 1)
             root.get_new_data_and_save(slider_water_level.value, color_button.text, slider_amount_of_players.value, slider_map_width.value, slider_map_height.value, slider_game_speed.value, slider_enemies_speed.value)
-            app.root.current = 'gamescene'
+            app.root.current = 'game'
 
     Button:
         text: 'BACK'
@@ -276,4 +276,4 @@
         on_release:
             self.color = (.1, 1, .8, 1)
             root.get_new_data_and_save(slider_water_level.value, color_button.text, slider_amount_of_players.value, slider_map_width.value, slider_map_height.value, slider_game_speed.value, slider_enemies_speed.value)
-            app.root.current = 'menuscene'
+            app.root.current = 'menu'

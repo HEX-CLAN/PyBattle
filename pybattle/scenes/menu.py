@@ -24,6 +24,7 @@ class Menu(Screen):
         if self.full:
             Window.fullscreen = False
             Config.setdefault('graphics', 'borderless', '0')
+            Config.set('graphics', 'resizable', 1)
             Config.write()
             self.full = False
         else:
