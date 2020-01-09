@@ -23,12 +23,9 @@ class Menu(Screen):
 
         if self.full:
             Window.fullscreen = False
-            Config.setdefault('graphics', 'borderless', '0')
-            Config.set('graphics', 'resizable', 1)
-            Config.write()
             self.full = False
         else:
-            Window.fullscreen = 'auto'
+            Window.fullscreen = 'auto' # jesli bedzie true to wskoczy w dziwna rozdzielczosc
             self.full = True
 
         pass
