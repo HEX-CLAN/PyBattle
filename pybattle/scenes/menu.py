@@ -3,7 +3,7 @@ from kivy.core.window import Window
 from kivy import Config
 
 
-class MenuScene(Screen):
+class Menu(Screen):
     def on_enter(self):
         print("=== menu.py on_enter")
         print("window:", Window.size)
