@@ -23,6 +23,7 @@ class Menu(Screen):
 
         if self.mode == 1:
             Window.fullscreen = True
+            Window.size = (800, 450)
             self.mode = 2
             return
 
