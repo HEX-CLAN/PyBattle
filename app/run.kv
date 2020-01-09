@@ -1,0 +1,18 @@
+#:kivy 1.11.1
+#:include pybattle/scenes/settings_app.kv
+#:include pybattle/scenes/settings_game.kv
+#:include pybattle/scenes/game.kv
+#:include pybattle/scenes/menu.kv
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+
+
+ScreenManager:
+    transition: NoTransition()
+
+    Menu:
+
+    SettingsGame:
+
+    SettingsApp:
+
+    Game:
