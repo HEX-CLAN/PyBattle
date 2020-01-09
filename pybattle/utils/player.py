@@ -1,4 +1,4 @@
-from utils import settings
+from pybattle.utils import settings
 from kivy.graphics import Color
 
 

@@ -1,13 +1,11 @@
-import scenes.gamescene
-import scenes.menuscene
-import scenes.appsettingsscene
-import scenes.gamesettingsscene
-
 from kivy.app import App
 from kivy.config import Config
+import pybattle.scenes.game
+import pybattle.scenes.menu
+import pybattle.scenes.settings_app
+import pybattle.scenes.settings_game
 
-
-Config.set('modules', 'monitor', '') #FPS meter
+Config.set('modules', 'monitor', '')  # FPS meter
 
 
 class Window(App):
@@ -21,6 +19,6 @@ class Window(App):
         Config.write()
 
 
-if __name__ == '__main__':
-    w = Window()
-    w.run()
+# if __name__ == '__main__':
+#     w = Window()
+#     w.run()

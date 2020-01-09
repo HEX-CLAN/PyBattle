@@ -1,17 +1,12 @@
-from kivy.graphics import Color, Ellipse, Line
-import numpy as np
-from utils import colors
 import math
-from kivy.uix.floatlayout import FloatLayout
+import numpy
+from kivy.graphics import Color, Ellipse, Line
 from kivy.graphics.instructions import Canvas
 
-tile_colors = [
-    colors.GREEN,
-    colors.BLUE_LIGHT,
-    colors.BLUE_MEDIUM,
-    colors.BLUE_DARK,
-    colors.BLUE_DARKER,
-    colors.BLUE_DARKEST]
+from pybattle.utils.colors import *
+import pybattle.utils.settings
+
+tile_colors = [GREEN, BLUE_LIGHT, BLUE_MEDIUM, BLUE_DARK, BLUE_DARKER, BLUE_DARKEST]
 
 
 class Tile(Canvas):
@@ -43,7 +38,7 @@ class Tile(Canvas):
 
         # ELEMENTS
 
-        self.hexagon_color = Color(colors.GREEN[0], colors.GREEN[1], colors.GREEN[2], colors.GREEN[3])
+        self.hexagon_color = Color(GREEN[0], GREEN[1], GREEN[2], GREEN[3])
         self.hexagon = Ellipse(angle_start=30, angle_end=390, segments=6)
 
         self.player_color = None
@@ -151,7 +146,7 @@ class Tile(Canvas):
             return int(math.degrees(angle)/60)
 
 def util_distance_between_points(pos1, pos2):
-    return np.sqrt((pos1[0] - pos2[0]) * (pos1[0] - pos2[0]) + (pos1[1] - pos2[1]) * (pos1[1] - pos2[1]))
+    return numpy.sqrt((pos1[0] - pos2[0]) * (pos1[0] - pos2[0]) + (pos1[1] - pos2[1]) * (pos1[1] - pos2[1]))
 
 
 def util_get_closest_tile(tiles, pos):
@@ -170,17 +165,17 @@ def util_get_closest_tile(tiles, pos):
 
 def util_get_angle(pos1, pos2):
     if pos2[0] == pos1[0] and pos2[1] > pos1[1]:
-        return np.pi/2
+        return numpy.pi/2
     elif pos2[0] == pos1[0] and pos2[1] < pos1[1]:
-        return -np.pi/2
+        return -numpy.pi/2
     elif pos2[0] == pos1[0] and pos2[1] == pos1[1]:
         return 0.0
     else:
         tan = (pos2[1] - pos1[1]) / (pos2[0] - pos1[0])
         if pos2[0] > pos1[0]:
-            return np.arctan(tan)
+            return numpy.arctan(tan)
         else:
             if pos2[1] > pos1[1]:
-                return np.pi + np.arctan(tan)
+                return numpy.pi + numpy.arctan(tan)
             else:
-                return -np.pi + np.arctan(tan)
+                return -numpy.pi + numpy.arctan(tan)

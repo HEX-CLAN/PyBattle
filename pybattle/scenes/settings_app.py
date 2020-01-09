@@ -1,14 +1,12 @@
 import os
-
-import numpy as np
+import numpy
 from kivy import Config
 from kivy.core.window import Window
 from kivy.uix.screenmanager import Screen
+from pybattle.utils import settings
 
-from utils import settings
 
-
-class AppSettingsScene(Screen):
+class SettingsApp(Screen):
     MIN_WINDOW_WIDTH = 1024
     MAX_WINDOW_WIDTH = 1920
     MIN_WINDOW_HEIGHT = 768
@@ -22,7 +20,7 @@ class AppSettingsScene(Screen):
             'height': self.MIN_WINDOW_HEIGHT,
             'fullscreen': self.FULLSCREEN
         }
-        if os.path.isfile('data/app.npy'):
+        if os.path.isfile('data/pybattle.npy'):
             self.read_app_settings_data()
             self.update()
         else:
@@ -34,12 +32,12 @@ class AppSettingsScene(Screen):
         Config.set('graphics', 'height', self.MIN_WINDOW_HEIGHT)
 
     def create_user_file(self):
-        f = open('data/app.npy', 'w+')
+        f = open('data/pybattle.npy', 'w+')
         f.close()
-        np.save('data/app.npy', self.app_data)
+        numpy.save('data/pybattle.npy', self.app_data)
 
     def read_app_settings_data(self):
-        self.app_data = np.load('data/app.npy', allow_pickle=True).item()
+        self.app_data = numpy.load('data/pybattle.npy', allow_pickle=True).item()
 
     def get_new_data_and_save(self, new_width, new_height):
         self.app_data['width'] = new_width
@@ -52,4 +50,4 @@ class AppSettingsScene(Screen):
         settings.app_data = self.app_data
 
     def save_to_file(self):
-        np.save('data/app.npy', self.app_data)
+        numpy.save('data/pybattle.npy', self.app_data)

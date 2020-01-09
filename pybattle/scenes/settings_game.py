@@ -1,12 +1,10 @@
 import os
-
-import numpy as np
+import numpy
 from kivy.uix.screenmanager import Screen
+from pybattle.utils import settings
 
-from utils import settings
 
-
-class GameSettingsScene(Screen):
+class SettingsGame(Screen):
     MIN_WATER_LEVEL = 0
     MAX_WATER_LEVEL = 100
     MIN_AMOUNT_OF_PLAYERS = 2
@@ -42,10 +40,10 @@ class GameSettingsScene(Screen):
             os.mkdir('data')
         f = open('data/game.npy', 'w+')
         f.close()
-        np.save('data/game.npy', self.game_data)
+        numpy.save('data/game.npy', self.game_data)
 
     def read_game_settings_data(self):
-        self.game_data = np.load('data/game.npy', allow_pickle=True).item()
+        self.game_data = numpy.load('data/game.npy', allow_pickle=True).item()
 
     def get_new_data_and_save(self, new_water_level, new_player_color, new_amount_of_players, new_map_width,
                               new_map_height, new_game_speed, new_enemies_speed):
@@ -62,4 +60,4 @@ class GameSettingsScene(Screen):
         settings.game_data = self.game_data
 
     def save_to_file(self):
-        np.save('data/game.npy', self.game_data)
+        numpy.save('data/game.npy', self.game_data)

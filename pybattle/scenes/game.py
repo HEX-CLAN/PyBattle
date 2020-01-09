@@ -1,13 +1,13 @@
-import numpy
 from kivy.uix.screenmanager import Screen
-from utils.map import Map
-from utils import settings
-from utils.player import Player
 from kivy.clock import Clock
-from utils.map import util_get_closest_tile
+
+from pybattle.utils import settings
+from pybattle.utils.map import Map
+from pybattle.utils.tile import util_get_closest_tile
+from pybattle.utils.player import Player
 
 
-class GameScene(Screen):
+class Game(Screen):
 
     def __init__(self, **kw):
         super().__init__(**kw)
@@ -20,9 +20,7 @@ class GameScene(Screen):
         for x in range(self.amount_of_players - 1):
             self.other_players.append(Player(self.map, main=False))
 
-        
-
-    def on_update(self,delta_time):
+    def on_update(self, delta_time):
 
         self.main_player.update()
         for x in range(self.amount_of_players - 1):
@@ -31,7 +29,6 @@ class GameScene(Screen):
 
         # gra aktualizuje się co pewną ilość sekund
         # podczas jednej aktualizacji AI wykonuje pewną ilość ruchów
-
 
     def on_enter(self):
         self.map.update_canvas(x=0, y=0, w = self.width, h = self.height)

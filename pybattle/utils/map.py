@@ -1,9 +1,9 @@
 import numpy
 import random
 from kivy.graphics.instructions import Canvas
-from utils import generator
-from utils import settings
-from utils.tile import util_get_closest_tile
+from pybattle.utils import generator
+from pybattle.utils import settings
+from pybattle.utils.tile import util_get_closest_tile
 
 
 class Map:
