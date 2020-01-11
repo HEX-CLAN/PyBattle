@@ -126,7 +126,11 @@ class Tile(Canvas):
             self.add(self.lines[side]['line_color'])
             self.add(self.lines[side]['line'])
 
-            near_tile = self.map.tile[self.nearby_tiles[side]['x']][self.nearby_tiles[side]['y']]
+            aimed_tile = (self.nearby_tiles[side]['x'],self.nearby_tiles[side]['y'])
+            if aimed_tile[0] < 0 or aimed_tile[0] >= self.map.width or aimed_tile[1] < 0 or aimed_tile[1] >= self.map.height:
+                return
+
+            near_tile = self.map.tile[aimed_tile[0]][aimed_tile[1]]
             if near_tile.player is None:
                 near_tile.set_player(player)
                 player.tiles.append(near_tile)

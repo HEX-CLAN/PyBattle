@@ -20,7 +20,6 @@ class Game(Screen):
         self.main_player.update()
         for x in range(self.amount_of_players - 1):
             self.other_players[x].update()
-        print("Update")
 
         # gra aktualizuje się co pewną ilość sekund
         # podczas jednej aktualizacji AI wykonuje pewną ilość ruchów
