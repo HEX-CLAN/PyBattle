@@ -53,12 +53,12 @@ class Tile(Canvas):
         self.base_circle = None
 
         self.lines = [
-            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 34, 'b': 20}, # a i b sa tymczasowe
-            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 0, 'b': 40},
-            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': -34, 'b': 20},
-            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': -34, 'b': -20},
-            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 0, 'b': -40},
-            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 34, 'b': -20},
+            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 0, 'b': 0}, # a i b sa tymczasowe
+            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 0, 'b': 0},
+            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 0, 'b': 0},
+            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 0, 'b': 0},
+            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 0, 'b': 0},
+            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 0, 'b': 0},
         ]
 
         # DRAW
