@@ -111,9 +111,8 @@ class Tile(Canvas):
 
         sqrt_of_3 = np.sqrt(3)
 
-        # Te wartosci powinny byc obliczane a nie ustawiane na sztywno
         self.lines[0]['a'] = 3 * self.hexagon.size[0] / 8
-        self.lines[0]['b'] = self.hexagon.size[1] / 4
+        self.lines[0]['b'] = sqrt_of_3 * self.hexagon.size[1] / 8
 
         self.lines[1]['b'] = self.hexagon.size[1]/2
 
