@@ -109,13 +109,24 @@ class Tile(Canvas):
         self.hexagon.size = size
         self.center_pos = (pos[0] + size[0] / 2, pos[1] + size[1] / 2)
 
+        sqrt_of_3 = np.sqrt(3)
+
         # Te wartosci powinny byc obliczane a nie ustawiane na sztywno
-        # self.lines[0]['line'].points = [self.center_pos[0], self.center_pos[1], self.center_pos[0] + 34, self.center_pos[1] + 20]
-        # self.lines[1]['line'].points = [self.center_pos[0], self.center_pos[1], self.center_pos[0], self.center_pos[1] + 40]
-        # self.lines[2]['line'].points = [self.center_pos[0], self.center_pos[1], self.center_pos[0] - 34, self.center_pos[1] + 20]
-        # self.lines[3]['line'].points = [self.center_pos[0], self.center_pos[1], self.center_pos[0] - 34, self.center_pos[1] - 20]
-        # self.lines[4]['line'].points = [self.center_pos[0], self.center_pos[1], self.center_pos[0], self.center_pos[1] - 40]
-        # self.lines[5]['line'].points = [self.center_pos[0], self.center_pos[1], self.center_pos[0] + 34, self.center_pos[1] - 20]
+        self.lines[0]['a'] = 3 * self.hexagon.size[0] / 8
+        self.lines[0]['b'] = self.hexagon.size[1] / 4
+
+        self.lines[1]['b'] = self.hexagon.size[1]/2
+
+        self.lines[2]['a'] = -self.lines[0]['a']
+        self.lines[2]['b'] = self.lines[0]['b']
+
+        self.lines[3]['a'] = self.lines[2]['a']
+        self.lines[3]['b'] = -self.lines[2]['b']
+
+        self.lines[4]['b'] = -self.lines[1]['b']
+
+        self.lines[5]['a'] = self.lines[0]['a']
+        self.lines[5]['b'] = -self.lines[0]['b']
 
     def change_line(self, player, side):
 
