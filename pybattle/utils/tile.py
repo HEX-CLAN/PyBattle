@@ -53,12 +53,12 @@ class Tile(Canvas):
         self.base_circle = None
 
         self.lines = [
-            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 34, 'b': 20}, # a i b sa tymczasowe
-            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 0, 'b': 40},
-            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': -34, 'b': 20},
-            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': -34, 'b': -20},
-            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 0, 'b': -40},
-            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 34, 'b': -20},
+            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 0, 'b': 0}, # a i b sa tymczasowe
+            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 0, 'b': 0},
+            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 0, 'b': 0},
+            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 0, 'b': 0},
+            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 0, 'b': 0},
+            {'line': None, 'line_color': Color(0, 0, 0, 1), 'a': 0, 'b': 0},
         ]
 
         # DRAW
@@ -109,13 +109,23 @@ class Tile(Canvas):
         self.hexagon.size = size
         self.center_pos = (pos[0] + size[0] / 2, pos[1] + size[1] / 2)
 
-        # Te wartosci powinny byc obliczane a nie ustawiane na sztywno
-        # self.lines[0]['line'].points = [self.center_pos[0], self.center_pos[1], self.center_pos[0] + 34, self.center_pos[1] + 20]
-        # self.lines[1]['line'].points = [self.center_pos[0], self.center_pos[1], self.center_pos[0], self.center_pos[1] + 40]
-        # self.lines[2]['line'].points = [self.center_pos[0], self.center_pos[1], self.center_pos[0] - 34, self.center_pos[1] + 20]
-        # self.lines[3]['line'].points = [self.center_pos[0], self.center_pos[1], self.center_pos[0] - 34, self.center_pos[1] - 20]
-        # self.lines[4]['line'].points = [self.center_pos[0], self.center_pos[1], self.center_pos[0], self.center_pos[1] - 40]
-        # self.lines[5]['line'].points = [self.center_pos[0], self.center_pos[1], self.center_pos[0] + 34, self.center_pos[1] - 20]
+        sqrt_of_3 = np.sqrt(3)
+
+        self.lines[0]['a'] = 3 * self.hexagon.size[0] / 8
+        self.lines[0]['b'] = sqrt_of_3 * self.hexagon.size[1] / 8
+
+        self.lines[1]['b'] = self.hexagon.size[1]/2
+
+        self.lines[2]['a'] = -self.lines[0]['a']
+        self.lines[2]['b'] = self.lines[0]['b']
+
+        self.lines[3]['a'] = self.lines[2]['a']
+        self.lines[3]['b'] = -self.lines[2]['b']
+
+        self.lines[4]['b'] = -self.lines[1]['b']
+
+        self.lines[5]['a'] = self.lines[0]['a']
+        self.lines[5]['b'] = -self.lines[0]['b']
 
     def change_line(self, player, side):
 
@@ -126,7 +136,11 @@ class Tile(Canvas):
             self.add(self.lines[side]['line_color'])
             self.add(self.lines[side]['line'])
 
-            near_tile = self.map.tile[self.nearby_tiles[side]['x']][self.nearby_tiles[side]['y']]
+            aimed_tile = (self.nearby_tiles[side]['x'],self.nearby_tiles[side]['y'])
+            if aimed_tile[0] < 0 or aimed_tile[0] >= self.map.width or aimed_tile[1] < 0 or aimed_tile[1] >= self.map.height:
+                return
+
+            near_tile = self.map.tile[aimed_tile[0]][aimed_tile[1]]
             if near_tile.player is None:
                 near_tile.set_player(player)
                 player.tiles.append(near_tile)
