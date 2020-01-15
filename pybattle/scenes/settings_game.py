@@ -6,7 +6,7 @@ from pybattle.utils import settings
 
 class SettingsGame(Screen):
     MIN_WATER_LEVEL = 0
-    MAX_WATER_LEVEL = 100
+    MAX_WATER_LEVEL = 20
     MIN_AMOUNT_OF_PLAYERS = 2
     MAX_AMOUNT_OF_PLAYERS = 8
     MIN_MAP_WIDTH = 5
