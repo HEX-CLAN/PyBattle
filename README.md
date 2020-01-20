@@ -17,8 +17,10 @@ we recommend 3.7.4 or 3.6.9, because we are using them.
 * MacOS
 
 ##### Run the game:
+from the repository root directory
 ```
-python window.py
+pip install -r requirements.txt
+python -m pybattle
 ```
 
 ## Work schedule
